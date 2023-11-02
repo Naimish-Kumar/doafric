@@ -1,0 +1,23 @@
+import 'package:flutter/cupertino.dart';
+
+const Color colorPrimary = Color(0xFF113f60);
+const Color colorPrimaryButtonLight = Color(0xff5f7686);
+const Color colorPrimaryDark = Color.fromARGB(255, 23, 32, 49);
+const Color colorPrimaryLight = Color(0xFF1241A5);
+const Color colorBlack = Color(0xFF080809);
+const Color colorWhite = Color(0xFFFDFDFE);
+const Color colorGrey = Color(0xFF3A3B3D);
+const Color colorlightGrey = Color(0xFFA2A3A3);
+const Color transparent = Color(0x00000000);
+const Color layerOneBg = Color(0x80FFFFFF);
+const Color layerTwoBg = Color(0xFFE9FFF6);
+const Color logoBg = Color(0xFF000000);
+const Color golden = Color(0xDFD2A217);
+const Color forgotPasswordText = Color(0xFF024335);
+const Color signInButton = Color(0xFF024335);
+const Color checkbox = Color.fromARGB(255, 6, 111, 48);
+const Color signInBox = Color(0xFF024335);
+const Color hintText = Color(0xFFB4B4B4);
+const Color inputBorder = Color(0xFF707070);
+const Color colorLogoOrange = Color.fromARGB(255, 208, 63, 10);
+const Color colorLogoOrangeLight = Color(0xFF00aeef);
