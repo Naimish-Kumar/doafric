@@ -150,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Center(
                         child: Text(
                           "SHOP BY CATEGORIES",
-                          style: TextStyle(fontSize: 14, fontFamily: 'Amazon'),
+                          style: TextStyle(fontSize: 16, fontFamily: 'Amazon',fontWeight: FontWeight.w500),
                         ),
                       ),
                       const SizedBox(
@@ -213,13 +213,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                       FittedBox(
                                         child: SizedBox(
-                                          width: 60,
+                                          width: 70,
                                           child: Center(
                                             child: Text(
                                               categoryList[index]['name'] ?? '',
                                               style: const TextStyle(
                                                   fontFamily: 'Amazon',
-                                                  fontSize: 12,
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500,
                                                   color: colorBlack),
                                             ),
                                           ),
@@ -251,8 +252,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Text(
                         "DEALS & OFFERS",
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 16,
                           fontFamily: 'Amazon',
+                          fontWeight: FontWeight.w500
                         ),
                       )),
                       const SizedBox(
@@ -309,7 +311,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Center(
                           child: Text(
                         "All Brands",
-                        style: TextStyle(fontSize: 16, fontFamily: 'Amazon'),
+                        style: TextStyle(fontSize: 16, fontFamily: 'Amazon',fontWeight: FontWeight.w500),
                       )),
                       const SizedBox(
                         height: 20,
@@ -392,7 +394,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Center(
                           child: Text(
                         "Best Selling Product",
-                        style: TextStyle(fontSize: 16, fontFamily: 'Amazon'),
+                        style: TextStyle(fontSize: 16, fontFamily: 'Amazon',fontWeight: FontWeight.w500),
                       )),
                       const SizedBox(
                         height: 20,
@@ -400,7 +402,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Padding(
                         padding: const EdgeInsets.only(left: 5, right: 5),
                         child: SizedBox(
-                          height: Get.height / 3,
+                          height: Get.height /3.2,
                           child: ListView.builder(
                             shrinkWrap: false,
                             itemCount: brand.length>15?15:brand.length,
@@ -468,9 +470,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               .start,
                                                       children: [
                                                         Container(
+                                                          margin: const EdgeInsets.only(top: 5,left: 5),
                                                             padding:
                                                                 const EdgeInsets.all(
-                                                                    8.0),
+                                                                    5.0),
                                                             decoration:
                                                                 const BoxDecoration(
                                                               shape: BoxShape
@@ -484,88 +487,91 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                         .white,
                                                                     fontSize:
                                                                         12.0))),
-                                                        CircleAvatar(
-                                                          backgroundColor:
-                                                              Colors.white,
-                                                          radius: 15,
-                                                          child: IconButton(
-                                                            icon: const ImageIcon(
-                                                              AssetImage(
-                                                                  ImageFile
-                                                                      .heart),
-                                                              color:
-                                                                  colorPrimary,
-                                                              size: 15,
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(top: 5,right: 5),
+                                                          child: CircleAvatar(
+                                                            backgroundColor:
+                                                                Colors.white,
+                                                            radius: 13,
+                                                            child: IconButton(
+                                                              icon: const ImageIcon(
+                                                                AssetImage(
+                                                                    ImageFile
+                                                                        .heart),
+                                                                color:
+                                                                    colorPrimary,
+                                                                size: 15,
+                                                              ),
+                                                              onPressed:
+                                                                  () async {
+                                                                SharedPreferences
+                                                                    preferences =
+                                                                    await SharedPreferences
+                                                                        .getInstance();
+                                                        
+                                                                preferences
+                                                                    .getInt(
+                                                                        "value");
+                                                                preferences
+                                                                    .getString(
+                                                                        "name");
+                                                                preferences
+                                                                    .getString(
+                                                                        "email");
+                                                                preferences
+                                                                    .getString(
+                                                                        "mobile");
+                                                                preferences
+                                                                    .getString(
+                                                                        "id");
+                                                        
+                                                                print(
+                                                                    "user ${preferences.getString("id")}");
+                                                                if (preferences
+                                                                        .getString(
+                                                                            "name") ==
+                                                                    null) {
+                                                                  SqliteDatabase.writeData(
+                                                                          "productid",
+                                                                          bestsellingproducts[index]
+                                                                              [
+                                                                              'id']) ??
+                                                                      '';
+                                                        
+                                                                  Get.toNamed(Routes
+                                                                      .loginSignupScreen);
+                                                                } else {
+                                                                  var api = ApiClient.addSaveProductApi(
+                                                                      product_id:
+                                                                          bestsellingproducts[index]
+                                                                              [
+                                                                              'id'],
+                                                                      user_id:
+                                                                          _id);
+                                                                  api.then(
+                                                                      (value) {
+                                                                    if (value[
+                                                                            'status'] ==
+                                                                        'success') {
+                                                                      DialogHelper
+                                                                          .showFlutterToast(
+                                                                              strMsg:
+                                                                                  value['msg']);
+                                                                       Get.back();
+                                                                    } else {
+                                                                      DialogHelper
+                                                                          .showFlutterToast(
+                                                                              strMsg:
+                                                                                  value['msg']);
+                                                                    }
+                                                                  }, onError:
+                                                                          (error) {
+                                                                    throw error
+                                                                        .toString();
+                                                                  });
+                                                                }
+                                                              },
                                                             ),
-                                                            onPressed:
-                                                                () async {
-                                                              SharedPreferences
-                                                                  preferences =
-                                                                  await SharedPreferences
-                                                                      .getInstance();
-
-                                                              preferences
-                                                                  .getInt(
-                                                                      "value");
-                                                              preferences
-                                                                  .getString(
-                                                                      "name");
-                                                              preferences
-                                                                  .getString(
-                                                                      "email");
-                                                              preferences
-                                                                  .getString(
-                                                                      "mobile");
-                                                              preferences
-                                                                  .getString(
-                                                                      "id");
-
-                                                              print(
-                                                                  "user ${preferences.getString("id")}");
-                                                              if (preferences
-                                                                      .getString(
-                                                                          "name") ==
-                                                                  null) {
-                                                                SqliteDatabase.writeData(
-                                                                        "productid",
-                                                                        bestsellingproducts[index]
-                                                                            [
-                                                                            'id']) ??
-                                                                    '';
-
-                                                                Get.toNamed(Routes
-                                                                    .loginSignupScreen);
-                                                              } else {
-                                                                var api = ApiClient.addSaveProductApi(
-                                                                    product_id:
-                                                                        bestsellingproducts[index]
-                                                                            [
-                                                                            'id'],
-                                                                    user_id:
-                                                                        _id);
-                                                                api.then(
-                                                                    (value) {
-                                                                  if (value[
-                                                                          'status'] ==
-                                                                      'success') {
-                                                                    DialogHelper
-                                                                        .showFlutterToast(
-                                                                            strMsg:
-                                                                                value['msg']);
-                                                                     Get.back();
-                                                                  } else {
-                                                                    DialogHelper
-                                                                        .showFlutterToast(
-                                                                            strMsg:
-                                                                                value['msg']);
-                                                                  }
-                                                                }, onError:
-                                                                        (error) {
-                                                                  throw error
-                                                                      .toString();
-                                                                });
-                                                              }
-                                                            },
                                                           ),
                                                         ),
                                                       ],
@@ -616,7 +622,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 children: [
                                                   FittedBox(
                                                     child: SizedBox(
-                                                      height: 30,
+                                                      height: 40,
                                                       width: 80,
                                                       child: Text(
                                                         bestsellingproducts[
@@ -627,7 +633,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             fontSize: 13,
                                                             fontFamily:
                                                                 'Amazon',
-                                                            color: colorBlack),
+                                                            color: colorBlack,
+                                                            fontWeight: FontWeight.w500),
                                                       ),
                                                     ),
                                                   ),

@@ -8,7 +8,6 @@ import 'package:doafric/utils/image_file.dart';
 import 'package:doafric/utils/string_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-//import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,13 +28,12 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   RxInt quantity = 1.obs;
 
-  RxString _selectedIndex = ''.obs;
-  RxString _selectedVariantTwo = ''.obs;
+  final RxString _selectedIndex = ''.obs;
+  final RxString _selectedVariantTwo = ''.obs;
   _onSelected(RxString variable, String index) {
     variable.value = index;
   }
 
-  // StorageController _storageController = Get.put(StorageController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -188,7 +186,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                     preferences
                                                         .getString("mobile");
                                                     preferences.getString("id");
-
                                                     print(
                                                         "user ${preferences.getString("id")}");
                                                     print(
@@ -1207,7 +1204,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                       MainAxisAlignment.start,
                                                   children: [
                                                     Container(
-                                                        height: 160,
+                                                        height: 180,
                                                         decoration:
                                                             BoxDecoration(
                                                           borderRadius:
@@ -1250,10 +1247,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                                       .start,
                                                               children: [
                                                                 Container(
+                                                                  margin: const EdgeInsets.only(top: 5,left: 5),
                                                                     padding:
                                                                         const EdgeInsets
                                                                             .all(
-                                                                            8.0),
+                                                                            5.0),
                                                                     decoration:
                                                                         const BoxDecoration(
                                                                       shape: BoxShape
@@ -1267,77 +1265,80 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                                             color:
                                                                                 Colors.white,
                                                                             fontSize: 12.0))),
-                                                                CircleAvatar(
-                                                                  backgroundColor:
-                                                                      Colors
-                                                                          .white,
-                                                                  radius: 15,
-                                                                  child:
-                                                                      IconButton(
-                                                                    icon:
-                                                                        const ImageIcon(
-                                                                      AssetImage(
-                                                                          ImageFile
-                                                                              .heart),
-                                                                      color:
-                                                                          colorPrimary,
-                                                                      size: 13,
+                                                                Padding(
+                                                                  padding: const EdgeInsets.only(right: 2,top: 2),
+                                                                  child: CircleAvatar(
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .white,
+                                                                    radius: 13,
+                                                                    child:
+                                                                        IconButton(
+                                                                      icon:
+                                                                          const ImageIcon(
+                                                                        AssetImage(
+                                                                            ImageFile
+                                                                                .heart),
+                                                                        color:
+                                                                            colorPrimary,
+                                                                        size: 13,
+                                                                      ),
+                                                                      onPressed:
+                                                                          () async {
+                                                                        SharedPreferences
+                                                                            preferences =
+                                                                            await SharedPreferences
+                                                                                .getInstance();
+                                                                
+                                                                        preferences
+                                                                            .getInt(
+                                                                                "value");
+                                                                        preferences
+                                                                            .getString(
+                                                                                "name");
+                                                                        preferences
+                                                                            .getString(
+                                                                                "email");
+                                                                        preferences
+                                                                            .getString(
+                                                                                "mobile");
+                                                                        preferences
+                                                                            .getString(
+                                                                                "id");
+                                                                
+                                                                        print(
+                                                                            "user ${preferences.getString("id")}");
+                                                                        if (preferences
+                                                                                .getString("name") ==
+                                                                            null) {
+                                                                          SqliteDatabase.writeData("productid",
+                                                                                  data4[index]['id']) ??
+                                                                              '';
+                                                                
+                                                                          Get.toNamed(
+                                                                              Routes.loginSignupScreen);
+                                                                        } else {
+                                                                          var api = ApiClient.addSaveProductApi(
+                                                                              product_id:
+                                                                                  data4[index]['id'],
+                                                                              user_id: data4[index]["user_id"]);
+                                                                          api.then(
+                                                                              (value) {
+                                                                            if (value['status'] ==
+                                                                                'success') {
+                                                                              DialogHelper.showFlutterToast(strMsg: value['msg']);
+                                                                              // Get.back();
+                                                                            } else {
+                                                                              DialogHelper.showFlutterToast(strMsg: value['msg']);
+                                                                            }
+                                                                          }, onError:
+                                                                                  (error) {
+                                                                            throw error
+                                                                                .toString();
+                                                                          });
+                                                                        }
+                                                                      },
                                                                     ),
-                                                                    onPressed:
-                                                                        () async {
-                                                                      SharedPreferences
-                                                                          preferences =
-                                                                          await SharedPreferences
-                                                                              .getInstance();
-
-                                                                      preferences
-                                                                          .getInt(
-                                                                              "value");
-                                                                      preferences
-                                                                          .getString(
-                                                                              "name");
-                                                                      preferences
-                                                                          .getString(
-                                                                              "email");
-                                                                      preferences
-                                                                          .getString(
-                                                                              "mobile");
-                                                                      preferences
-                                                                          .getString(
-                                                                              "id");
-
-                                                                      print(
-                                                                          "user ${preferences.getString("id")}");
-                                                                      if (preferences
-                                                                              .getString("name") ==
-                                                                          null) {
-                                                                        SqliteDatabase.writeData("productid",
-                                                                                data4[index]['id']) ??
-                                                                            '';
-
-                                                                        Get.toNamed(
-                                                                            Routes.loginSignupScreen);
-                                                                      } else {
-                                                                        var api = ApiClient.addSaveProductApi(
-                                                                            product_id:
-                                                                                data4[index]['id'],
-                                                                            user_id: data4[index]["user_id"]);
-                                                                        api.then(
-                                                                            (value) {
-                                                                          if (value['status'] ==
-                                                                              'success') {
-                                                                            DialogHelper.showFlutterToast(strMsg: value['msg']);
-                                                                            // Get.back();
-                                                                          } else {
-                                                                            DialogHelper.showFlutterToast(strMsg: value['msg']);
-                                                                          }
-                                                                        }, onError:
-                                                                                (error) {
-                                                                          throw error
-                                                                              .toString();
-                                                                        });
-                                                                      }
-                                                                    },
                                                                   ),
                                                                 ),
                                                               ],
@@ -1347,21 +1348,26 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                     Padding(
                                                       padding:
                                                           const EdgeInsets.all(
-                                                              3.0),
+                                                              5.0),
                                                       child: Column(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .start,
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
-                                                                .start,
+                                                                .center,
                                                         children: [
                                                           Text(
                                                             data4[index]
                                                                     ["title"] ??
                                                                 '',
+                                                                textAlign: TextAlign.center,
+                                                                maxLines: 2,
+                                                                overflow: TextOverflow.ellipsis,
                                                             style: const TextStyle(
-                                                                fontSize: 13,
+                                                                fontSize: 16,
+                                                                fontWeight: FontWeight.w500,
+                                                                
                                                                 fontFamily:
                                                                     'Amazon',
                                                                 color:
@@ -1373,7 +1379,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                           Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
-                                                                    .start,
+                                                                    .center,
                                                             crossAxisAlignment:
                                                                 CrossAxisAlignment
                                                                     .start,
@@ -1389,7 +1395,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                                     color:
                                                                         colorPrimary,
                                                                     fontSize:
-                                                                        11),
+                                                                        13),
                                                               ),
                                                               const SizedBox(
                                                                 width: 20,

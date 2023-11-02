@@ -43,7 +43,8 @@ class _AddressListState extends State<AddressList> {
     preferences.setString("id", id);
     preferences.commit();
     DialogHelper.showFlutterToast(
-        strMsg: "add1 " + add1 + "add2 " + add2 + "zip " + zip);
+        // ignore: prefer_interpolation_to_compose_strings
+        strMsg: "${"add1 " + add1 + "add2 " + add2}zip " + zip);
     OrderReview();
   }
 
@@ -97,98 +98,81 @@ class _AddressListState extends State<AddressList> {
               if (snapshot.hasData) {
                 Map map = snapshot.data as Map;
                 List data = map['addresses'];
-                print("$data");
-                return Container(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 15),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          InkWell(
-                            child: Container(
-                              margin:
-                                  EdgeInsets.only(left: 4, right: 4, top: 30),
-                              alignment: Alignment.center,
-                              height: 85,
-                              decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                    colors: [
-                                      (Color(0xffe0e0e0)),
-                                      (Color(0xffe0e0e0))
-                                    ],
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight),
-                                borderRadius: BorderRadius.circular(1),
-                              ),
-                              child: Text(
-                                "+  Add A New Address",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 18),
-                              ),
+                print("address $map");
+                return Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        InkWell(
+                          child: Container(
+                            margin:
+                                const EdgeInsets.only(left: 4, right: 4, top: 30),
+                            alignment: Alignment.center,
+                            height: 85,
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                  colors: [
+                                    (Color(0xffe0e0e0)),
+                                    (Color(0xffe0e0e0))
+                                  ],
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight),
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            onTap: () {
-                              Get.off(CheckoutScreen());
-                            },
+                            child: const Text(
+                              "+  Add A New Address",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                  color: Colors.black, fontSize: 18),
+                            ),
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Text(
-                            "Select Address",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: data.length,
-                              physics: NeverScrollableScrollPhysics(),
-                              scrollDirection: Axis.vertical,
-                              itemBuilder: (BuildContext context, int index) {
-                                return InkWell(
-                                  onTap: () {
-                                    savePref(
-                                        data[index]['address_line_1'],
-                                        data[index]['address_line_2'],
-                                        data[index]['zip'],
-                                        data[index]['id'].toString(),
-                                        data.length.toString());
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 10),
+                          onTap: () {
+                            Get.off(const CheckoutScreen());
+                          },
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Text(
+                          "Select Address",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(height: 30,),
+                        ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: data.length,
+                            physics: const NeverScrollableScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            itemBuilder: (BuildContext context, int index) {
+                              return InkWell(
+                                onTap: () {
+                                  savePref(
+                                      data[index]['address_line_1'],
+                                      data[index]['address_line_2'],
+                                      data[index]['zip'],
+                                      data[index]['id'].toString(),
+                                      data.length.toString());
+                                },
+                                
+                                  child: Card(
                                     child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                            color: const Color.fromARGB(
-                                                255, 237, 240, 244)),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            bottom: 15,
-                                            top: 5,
-                                            left: 8,
-                                            right: 8),
+                                      padding: const EdgeInsets.all(10),
+                                      margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 10),
-                                              child: Container(
-                                                alignment: Alignment.topLeft,
-                                                height: 25,
-                                                child: Image.asset(
-                                                    'assets/images/map.png'),
-                                              ),
-                                            ),
-                                            SizedBox(
+                                              CrossAxisAlignment.center,
+                                          children: [ 
+                                            Image.asset('assets/images/map.png',height: 30,),
+                                              
+                                            const SizedBox(
                                               width: 25,
                                             ),
                                             Column(
@@ -197,28 +181,29 @@ class _AddressListState extends State<AddressList> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
-                                                  data[index]['address_line_1'],
-                                                  style: TextStyle(
+                                                 Text(
+                                                 data[index]['address_line_1'],
+                                                  style: const TextStyle(
                                                       fontSize: 15,
                                                       color: Colors.black),
                                                 ),
-                                                Row(
+                                                 Row(
                                                   children: [
                                                     Text(
-                                                      data[index]
-                                                          ['address_line_2'],
-                                                      style: TextStyle(
+                                                      data[index] ['address_line_2']?? " ",
+                                                      style: const TextStyle(
                                                           fontSize: 15,
                                                           color: Colors.grey),
                                                     ),
                                                   ],
                                                 ),
                                                 Row(
+                                                  mainAxisAlignment: MainAxisAlignment.start,
                                                   children: [
+                                                    
                                                     Text(
                                                       data[index]['zip'],
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           fontSize: 15,
                                                           color: Colors.grey),
                                                     ),
@@ -229,15 +214,15 @@ class _AddressListState extends State<AddressList> {
                                           ],
                                         ),
                                       ),
-                                    ),
                                   ),
-                                );
-                              }),
-                          SizedBox(
-                            height: 20,
-                          ),
-                        ],
-                      ),
+                                  
+                                
+                              );
+                            }),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                      ],
                     ),
                   ),
                 );

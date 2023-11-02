@@ -14,6 +14,9 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(topRight: Radius.circular(15),bottomRight: Radius.circular(15))
+      ),
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -21,9 +24,9 @@ class CustomDrawer extends StatelessWidget {
           DrawerHeader(
             padding: EdgeInsets.zero,
             child: Container(
-              padding: EdgeInsets.all(28),
+              padding: const EdgeInsets.all(28),
               color: colorPrimary,
-              child: ImageIcon(
+              child: const ImageIcon(
                 AssetImage(ImageFile.goldenlogo),
                 color: golden,
               ),
@@ -251,7 +254,7 @@ class CustomDrawer extends StatelessWidget {
                 dialogType: DialogType.INFO,
                 btnOkColor: colorPrimary,
                 borderSide: BorderSide(color: colorPrimary, width: 0.1.h),
-                buttonsBorderRadius: BorderRadius.all(Radius.circular(2)),
+                buttonsBorderRadius: const BorderRadius.all(Radius.circular(2)),
                 headerAnimationLoop: false,
                 animType: AnimType.BOTTOMSLIDE,
                 title: 'Logout',

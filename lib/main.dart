@@ -1,6 +1,5 @@
 import 'package:doafric/page_routes/route_generate.dart';
 import 'package:doafric/page_routes/routes.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -51,7 +50,10 @@ class MyApp extends StatelessWidget {
         DeviceOrientation.portraitDown,
       ]);
 
-      return const GetMaterialApp(
+      return  GetMaterialApp(
+        theme: ThemeData(
+          useMaterial3: true
+        ),
         debugShowCheckedModeBanner: false,
         initialRoute: Routes.splashScreen,
         onGenerateRoute: RouteGenerator.generateRoute,

@@ -13,7 +13,7 @@ class _BottomState extends State<Bottom> {
 
   final tabs = [
     const HomeScreen(),
-    Categories(),
+    const Categories(),
     const Center(child: Text('Cart page')),
     const Center(child: Text('Account page')),
   ];

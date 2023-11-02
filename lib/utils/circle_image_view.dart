@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import 'colors.dart';
 import 'image_file.dart';
 
@@ -11,7 +10,7 @@ class CircleImageView extends StatelessWidget {
   String url;
 
   CircleImageView(
-      {this.width = 100,
+      {super.key, this.width = 100,
       this.borderColor = colorWhite,
       this.borderWidth = 1,
       this.height = 100,

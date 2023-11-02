@@ -60,7 +60,7 @@ class ProductList extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Container(
-                                        height: 100,
+                                        height: 140,
                                         decoration: BoxDecoration(
                                           // borderRadius: const BorderRadius.all(
                                           //     Radius.circular(15.0)),
@@ -79,7 +79,7 @@ class ProductList extends StatelessWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                              CrossAxisAlignment.center,
                                           children: [
                                             Row(
                                               mainAxisAlignment:
@@ -89,8 +89,9 @@ class ProductList extends StatelessWidget {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Container(
+                                                  margin: const EdgeInsets.only(top: 5,left: 5),
                                                     padding:
-                                                        const EdgeInsets.all(8.0),
+                                                        const EdgeInsets.all(5.0),
                                                     decoration:
                                                         const BoxDecoration(
                                                       shape: BoxShape.circle,
@@ -100,80 +101,83 @@ class ProductList extends StatelessWidget {
                                                         style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 12.0))),
-                                                CircleAvatar(
-                                                  backgroundColor: Colors.white,
-                                                  radius: 15,
-                                                  child: IconButton(
-                                                    icon: const ImageIcon(
-                                                      AssetImage(
-                                                          ImageFile.heart),
-                                                      color: colorPrimary,
-                                                      size: 15,
+                                                Padding(
+                                                  padding: const EdgeInsets.only(top: 5,right: 5),
+                                                  child: CircleAvatar(
+                                                    backgroundColor: Colors.white,
+                                                    radius: 15,
+                                                    child: IconButton(
+                                                      icon: const ImageIcon(
+                                                        AssetImage(
+                                                            ImageFile.heart),
+                                                        color: colorPrimary,
+                                                        size: 15,
+                                                      ),
+                                                      onPressed: () async {
+                                                        SharedPreferences
+                                                            preferences =
+                                                            await SharedPreferences
+                                                                .getInstance();
+                                                
+                                                        preferences
+                                                            .getInt("value");
+                                                        preferences
+                                                            .getString("name");
+                                                        preferences
+                                                            .getString("email");
+                                                        preferences
+                                                            .getString("mobile");
+                                                        preferences
+                                                            .getString("id");
+                                                
+                                                        print(
+                                                            "user ${preferences.getString("id")}");
+                                                        print(
+                                                            "user ${preferences.getString("name")}");
+                                                        print(
+                                                            "user ${preferences.getString("email")}");
+                                                        if (preferences.getString(
+                                                                "name") ==
+                                                            null) {
+                                                          SqliteDatabase.writeData(
+                                                                  "productid",
+                                                                  data[index]
+                                                                      ['id']) ??
+                                                              '';
+                                                
+                                                          Get.toNamed(Routes
+                                                              .loginSignupScreen);
+                                                        } else {
+                                                          var api = ApiClient
+                                                              .addSaveProductApi(
+                                                                  product_id:
+                                                                      data[index]
+                                                                          ['id'],
+                                                                  user_id: int.parse(
+                                                                      preferences
+                                                                          .getString(
+                                                                              "id")!));
+                                                          api.then((value) {
+                                                            if (value['status'] ==
+                                                                'success') {
+                                                              DialogHelper
+                                                                  .showFlutterToast(
+                                                                      strMsg: value[
+                                                                          'msg']);
+                                                              // Get.back();
+                                                            } else {
+                                                              DialogHelper
+                                                                  .showFlutterToast(
+                                                                      strMsg: value[
+                                                                          'msg']);
+                                                            }
+                                                          }, onError: (error) {
+                                                            throw error
+                                                                .toString();
+                                                          });
+                                                        }
+                                                      },
                                                     ),
-                                                    onPressed: () async {
-                                                      SharedPreferences
-                                                          preferences =
-                                                          await SharedPreferences
-                                                              .getInstance();
-
-                                                      preferences
-                                                          .getInt("value");
-                                                      preferences
-                                                          .getString("name");
-                                                      preferences
-                                                          .getString("email");
-                                                      preferences
-                                                          .getString("mobile");
-                                                      preferences
-                                                          .getString("id");
-
-                                                      print(
-                                                          "user ${preferences.getString("id")}");
-                                                      print(
-                                                          "user ${preferences.getString("name")}");
-                                                      print(
-                                                          "user ${preferences.getString("email")}");
-                                                      if (preferences.getString(
-                                                              "name") ==
-                                                          null) {
-                                                        SqliteDatabase.writeData(
-                                                                "productid",
-                                                                data[index]
-                                                                    ['id']) ??
-                                                            '';
-
-                                                        Get.toNamed(Routes
-                                                            .loginSignupScreen);
-                                                      } else {
-                                                        var api = ApiClient
-                                                            .addSaveProductApi(
-                                                                product_id:
-                                                                    data[index]
-                                                                        ['id'],
-                                                                user_id: int.parse(
-                                                                    preferences
-                                                                        .getString(
-                                                                            "id")!));
-                                                        api.then((value) {
-                                                          if (value['status'] ==
-                                                              'success') {
-                                                            DialogHelper
-                                                                .showFlutterToast(
-                                                                    strMsg: value[
-                                                                        'msg']);
-                                                            // Get.back();
-                                                          } else {
-                                                            DialogHelper
-                                                                .showFlutterToast(
-                                                                    strMsg: value[
-                                                                        'msg']);
-                                                          }
-                                                        }, onError: (error) {
-                                                          throw error
-                                                              .toString();
-                                                        });
-                                                      }
-                                                    },
                                                   ),
                                                 ),
                                               ],
@@ -186,13 +190,17 @@ class ProductList extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             data[index]["title"] ?? '',
+                                            maxLines: 2,
+                                            textAlign: TextAlign.center,
+                                            overflow: TextOverflow.ellipsis,
                                             style: const TextStyle(
-                                                fontSize: 13,
+                                                fontSize: 16,
                                                 fontFamily: 'Amazon',
+                                                fontWeight: FontWeight.w500,
                                                 color: colorBlack),
                                           ),
                                           const SizedBox(
@@ -200,7 +208,7 @@ class ProductList extends StatelessWidget {
                                           ),
                                           Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                                MainAxisAlignment.center,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: <Widget>[

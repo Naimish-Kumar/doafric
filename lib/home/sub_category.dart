@@ -52,12 +52,12 @@ class Subcategory extends StatelessWidget {
                               Container(
                                 width: Get.width,
                                 margin: const EdgeInsets.fromLTRB(5, 5, 5, 30),
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     borderRadius:
-                                        const BorderRadius.all(Radius.circular(15.0)),
-                                    border: Border.all(
-                                        color: colorPrimary, width: 2),
-                                    boxShadow: const [
+                                        BorderRadius.all(Radius.circular(15.0)),
+                                    // border: Border.all(
+                                    //     color: colorPrimary, width: 2),
+                                    boxShadow: [
                                       BoxShadow(color: colorGrey)
                                     ]),
                                 child: CachedNetworkImage(

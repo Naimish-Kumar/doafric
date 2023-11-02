@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:doafric/navigation_drawer_item/edit_profile.dart';
 import 'package:doafric/utils/appbarforall.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +56,7 @@ class _profileDetailsState extends State<profileDetails> {
                   if (snapshot.hasData) {
                     Map map = snapshot.data as Map;
                     final data1 = map['data'];
-                    print(data1);
+                    print('dataaaaa $map');
 
                     return SizedBox(
                       height: Get.height,
@@ -127,16 +129,17 @@ class _profileDetailsState extends State<profileDetails> {
                             const SizedBox(
                               height: 20,
                             ),
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text(
+                                Text(
                                   "Name",
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 Text(
-                                  data1['name'].toString(),
-                                  style: const TextStyle(
+                                 // data1['name']??'',
+                                 '',
+                                  style: TextStyle(
                                     color: Colors.grey,
                                   ),
                                 ),
@@ -145,64 +148,68 @@ class _profileDetailsState extends State<profileDetails> {
                             const SizedBox(
                               height: 20,
                             ),
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text(
+                                Text(
                                   "Email",
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 Text(
-                                  data1['email'].toString(),
-                                  style: const TextStyle(color: Colors.grey),
+                                  //data1['email']??'',
+                                  '',
+                                  style: TextStyle(color: Colors.grey),
                                 ),
                               ],
                             ),
                             const SizedBox(
                               height: 20,
                             ),
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text(
+                                Text(
                                   "Phone",
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 Text(
-                                  data1['mobile'].toString(),
-                                  style: const TextStyle(color: Colors.grey),
+                                 // data1['mobile']?? '',
+                                 '',
+                                  style: TextStyle(color: Colors.grey),
                                 ),
                               ],
                             ),
-                            // const SizedBox(
-                            //   height: 20,
-                            // ),
-                            // Row(
-                            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            //   children: [
-                            //     const Text(
-                            //       "Country",
-                            //       style: TextStyle(color: Colors.black),
-                            //     ),
-                            //     Text(
-                            //       data1['country']['name'].toString(),
-                            //       style: const TextStyle(color: Colors.grey),
-                            //     ),
-                            //   ],
-                            // ),
                             const SizedBox(
                               height: 20,
                             ),
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text(
+                                Text(
+                                  "Country",
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                Text(
+                                 // data1['country']['name'].toString(),
+                                 '',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
                                   "City",
                                   style: TextStyle(color: Colors.black),
                                 ),
                                 Text(
-                                  data1['city'].toString(),
-                                  style: const TextStyle(color: Colors.grey),
+                                 // data1['city']??'',
+                                 '',
+                                  style: TextStyle(color: Colors.grey),
                                 ),
                               ],
                             ),

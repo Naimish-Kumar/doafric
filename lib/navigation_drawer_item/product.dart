@@ -32,7 +32,7 @@ class _ProductState extends State<Product> {
         backgroundColor: colorWhite,
         centerTitle: true,
         leading: InkWell(
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
             color: colorBlack,
             size: 25,
@@ -129,13 +129,13 @@ class _ProductState extends State<Product> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "Price- High to Low",
                                 style: TextStyle(
                                     fontSize: 15,
@@ -154,13 +154,13 @@ class _ProductState extends State<Product> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 "Newest First",
                                 style: TextStyle(
                                     fontSize: 15,
@@ -222,7 +222,7 @@ class _ProductState extends State<Product> {
                         child: Stack(
                           children: <Widget>[
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Colors.white60,
                                 // borderRadius:
                                 //     BorderRadius.all(Radius.circular(5.0)),
@@ -240,7 +240,7 @@ class _ProductState extends State<Product> {
                                 ],
                               ),
                               width: Get.width,
-                              margin: EdgeInsets.fromLTRB(5, 5, 5, 10),
+                              margin: const EdgeInsets.fromLTRB(5, 5, 5, 10),
                               child: Card(
                                 elevation: 2,
                                 color: Colors.white,
@@ -248,9 +248,9 @@ class _ProductState extends State<Product> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Container(
-                                        height: 100,
+                                        height: 150,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
+                                          borderRadius: const BorderRadius.only(
                                               topRight: Radius.circular(5.0),
                                               topLeft: Radius.circular(5.0)),
                                           color: colorWhite,
@@ -264,7 +264,7 @@ class _ProductState extends State<Product> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                              CrossAxisAlignment.center,
                                           children: [
                                             Row(
                                               mainAxisAlignment:
@@ -274,8 +274,9 @@ class _ProductState extends State<Product> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Container(
+                                                  margin: const EdgeInsets.only(top: 5,left: 5),
                                                     padding:
-                                                        EdgeInsets.all(12.0),
+                                                        const EdgeInsets.all(8.0),
                                                     decoration:
                                                         const BoxDecoration(
                                                       shape: BoxShape.circle,
@@ -285,75 +286,78 @@ class _ProductState extends State<Product> {
                                                         style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 12.0))),
-                                                CircleAvatar(
-                                                  backgroundColor: Colors.white,
-                                                  //s radius: 20,
-                                                  child: IconButton(
-                                                    icon: const ImageIcon(
-                                                      AssetImage(
-                                                          ImageFile.heart),
-                                                      color: colorPrimary,
-                                                      size: 15,
+                                                Padding(
+                                                  padding: const EdgeInsets.only(right: 5,top: 5),
+                                                  child: CircleAvatar(
+                                                    backgroundColor: Colors.white,
+                                                    radius: 15,
+                                                    child: IconButton(
+                                                      icon: const ImageIcon(
+                                                        AssetImage(
+                                                            ImageFile.heart),
+                                                        color: colorPrimary,
+                                                        size: 12,
+                                                      ),
+                                                      onPressed: () async {
+                                                        SharedPreferences
+                                                            preferences =
+                                                            await SharedPreferences
+                                                                .getInstance();
+                                                
+                                                        preferences
+                                                            .getInt("value");
+                                                        preferences
+                                                            .getString("name");
+                                                        preferences
+                                                            .getString("email");
+                                                        preferences
+                                                            .getString("mobile");
+                                                        preferences
+                                                            .getString("id");
+                                                
+                                                        print(
+                                                            "user ${preferences.getString("id")}");
+                                                        if (preferences.getString(
+                                                                "name") ==
+                                                            null) {
+                                                          SqliteDatabase.writeData(
+                                                                  "productid",
+                                                                  data[index]
+                                                                      ['id']) ??
+                                                              '';
+                                                
+                                                          Get.toNamed(Routes
+                                                              .loginSignupScreen);
+                                                        } else {
+                                                          var api = ApiClient.addSaveProductApi(
+                                                              product_id:
+                                                                  data[index]
+                                                                      ['id'],
+                                                              user_id: int.parse(
+                                                                  preferences.getString(
+                                                                      StorageKeys
+                                                                          .userId)!));
+                                                          api.then((value) {
+                                                            if (value['status'] ==
+                                                                'success') {
+                                                              DialogHelper
+                                                                  .showFlutterToast(
+                                                                      strMsg: value[
+                                                                          'msg']);
+                                                              // Get.back();
+                                                            } else {
+                                                              DialogHelper
+                                                                  .showFlutterToast(
+                                                                      strMsg: value[
+                                                                          'msg']);
+                                                            }
+                                                          }, onError: (error) {
+                                                            throw error
+                                                                .toString();
+                                                          });
+                                                        }
+                                                      },
                                                     ),
-                                                    onPressed: () async {
-                                                      SharedPreferences
-                                                          preferences =
-                                                          await SharedPreferences
-                                                              .getInstance();
-
-                                                      preferences
-                                                          .getInt("value");
-                                                      preferences
-                                                          .getString("name");
-                                                      preferences
-                                                          .getString("email");
-                                                      preferences
-                                                          .getString("mobile");
-                                                      preferences
-                                                          .getString("id");
-
-                                                      print(
-                                                          "user ${preferences.getString("id")}");
-                                                      if (preferences.getString(
-                                                              "name") ==
-                                                          null) {
-                                                        SqliteDatabase.writeData(
-                                                                "productid",
-                                                                data[index]
-                                                                    ['id']) ??
-                                                            '';
-
-                                                        Get.toNamed(Routes
-                                                            .loginSignupScreen);
-                                                      } else {
-                                                        var api = ApiClient.addSaveProductApi(
-                                                            product_id:
-                                                                data[index]
-                                                                    ['id'],
-                                                            user_id: int.parse(
-                                                                preferences.getString(
-                                                                    StorageKeys
-                                                                        .userId)!));
-                                                        api.then((value) {
-                                                          if (value['status'] ==
-                                                              'success') {
-                                                            DialogHelper
-                                                                .showFlutterToast(
-                                                                    strMsg: value[
-                                                                        'msg']);
-                                                            // Get.back();
-                                                          } else {
-                                                            DialogHelper
-                                                                .showFlutterToast(
-                                                                    strMsg: value[
-                                                                        'msg']);
-                                                          }
-                                                        }, onError: (error) {
-                                                          throw error
-                                                              .toString();
-                                                        });
-                                                      }
-                                                    },
                                                   ),
                                                 ),
                                               ],
@@ -361,17 +365,18 @@ class _ProductState extends State<Product> {
                                           ],
                                         )),
                                     Padding(
-                                      padding: const EdgeInsets.all(5.0),
+                                      padding: const EdgeInsets.only(top: 10),
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                            CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             data[index]["title"] ?? '',
                                             style: const TextStyle(
-                                                fontSize: 13,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500,
                                                 color: colorBlack),
                                           ),
                                           const SizedBox(
@@ -379,16 +384,16 @@ class _ProductState extends State<Product> {
                                           ),
                                           Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                                MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
                                                 "\$ ${data[index]['regular_price']}",
                                                 style: const TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     color: colorPrimary,
-                                                    fontSize: 11),
+                                                    fontSize: 13),
                                               ),
                                               const SizedBox(
                                                 width: 20,
@@ -397,7 +402,7 @@ class _ProductState extends State<Product> {
                                                 "\$ ${data[index]["sale_price"]}",
                                                 style: const TextStyle(
                                                     color: Colors.grey,
-                                                    fontSize: 10,
+                                                    fontSize: 13,
                                                     decoration: TextDecoration
                                                         .lineThrough),
                                               )
@@ -422,7 +427,7 @@ class _ProductState extends State<Product> {
                     },
                     itemCount: data.length,
                     shrinkWrap: true,
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                   );
                 }
               }
@@ -430,7 +435,7 @@ class _ProductState extends State<Product> {
               return SizedBox(
                 width: Get.width,
                 height: Get.height,
-                child: Center(
+                child: const Center(
                   child: CircularProgressIndicator(),
                 ),
               );

@@ -20,7 +20,6 @@ class InitState extends State<SplashScreen> {
 
   startTimer() async 
   {
-    print("kljjfdhgkjfdkg");
     var duration = const Duration(seconds: 3);
     return  Timer(duration, homePageRoute);
   }

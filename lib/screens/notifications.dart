@@ -47,7 +47,7 @@ class _NotifyScreenState extends State<NotifyScreen> {
 
  List<Widget> notification() {
   return List.generate(5, (index) => Container(
-    height: 8.h,
+    height: 9.h,
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.circular(1.h),

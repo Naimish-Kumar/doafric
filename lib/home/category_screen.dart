@@ -32,8 +32,8 @@ class Categories extends StatelessWidget {
                     //print(data);
                     return GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 15,
+                        crossAxisSpacing: 15,
                         crossAxisCount: 2,
                         childAspectRatio: MediaQuery.of(context).size.width /
                             (MediaQuery.of(context).size.height / 1.9),
@@ -45,12 +45,12 @@ class Categories extends StatelessWidget {
                               Container(
                                 width: Get.width,
                                 margin: const EdgeInsets.fromLTRB(5, 5, 5, 30),
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                     borderRadius:
-                                        const BorderRadius.all(Radius.circular(15.0)),
-                                    border: Border.all(
-                                        color: colorPrimary, width: 2),
-                                    boxShadow: const [
+                                        BorderRadius.all(Radius.circular(13.0)),
+                                    // border: Border.all(
+                                    //     color: colorPrimary, width: 2),
+                                    boxShadow: [
                                       BoxShadow(color: colorGrey)
                                     ]),
                                 child: CachedNetworkImage(
@@ -60,7 +60,7 @@ class Categories extends StatelessWidget {
                                     width: Get.width,
                                     decoration: BoxDecoration(
                                       borderRadius: const BorderRadius.all(
-                                          Radius.circular(15.0)),
+                                          Radius.circular(13.0)),
                                       boxShadow: const [
                                         BoxShadow(
                                           color: Colors.grey,
@@ -101,11 +101,11 @@ class Categories extends StatelessWidget {
                                 right: 0,
                                 child: Container(
                                     width: Get.width,
-                                    height: Get.height / 15,
+                                    height: Get.height / 16,
                                     margin: const EdgeInsets.fromLTRB(30, 5, 30, 5),
                                     decoration: BoxDecoration(
                                       color: colorPrimary,
-                                      borderRadius: BorderRadius.circular(15),
+                                      borderRadius: BorderRadius.circular(10),
                                       boxShadow: const [
                                         BoxShadow(
                                           color: Colors.grey,
@@ -125,7 +125,7 @@ class Categories extends StatelessWidget {
                                         fontColor: colorWhite,
                                         textStyle: Theme.of(context)
                                             .textTheme
-                                            .bodyText1!,
+                                            .bodyLarge!,
                                         softWrap: true,
                                       ),
                                     )),

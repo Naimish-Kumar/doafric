@@ -1,7 +1,5 @@
 import 'package:doafric/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class AppBarScreens extends StatelessWidget {
   final String? image;
@@ -22,7 +20,7 @@ class AppBarScreens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         color: Colors.black,
       ),
       centerTitle: true,
@@ -30,9 +28,9 @@ class AppBarScreens extends StatelessWidget {
       backgroundColor: colorWhite,
       title: Text(
         text ?? '',
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.black),
       ),
-      actions: [
+      actions: const [
         // Row(
         //   mainAxisAlignment: MainAxisAlignment.start,
         //   children: [

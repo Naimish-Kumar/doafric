@@ -90,7 +90,7 @@ class _WishListState extends State<WishList> {
                                             MainAxisAlignment.start,
                                         children: [
                                           Container(
-                                              height: 90,
+                                              height: 110,
                                               decoration: BoxDecoration(
                                                 color: colorPrimary,
                                                 image: DecorationImage(
@@ -108,9 +108,10 @@ class _WishListState extends State<WishList> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Container(
+                                                    margin: const EdgeInsets.only(top: 5,left: 5),
                                                       padding:
                                                           const EdgeInsets.all(
-                                                              8.0),
+                                                              5.0),
                                                       decoration:
                                                           const BoxDecoration(
                                                         shape: BoxShape.circle,
@@ -192,20 +193,21 @@ class _WishListState extends State<WishList> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.center,
                                               children: [
                                                 Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
-                                                          .spaceBetween,
+                                                          .spaceEvenly,
                                                   children: [
                                                     Text(
                                                       data[index]['product']
                                                               ["title"] ??
                                                           "",
                                                       style: const TextStyle(
-                                                          fontSize: 13,
+                                                          fontSize: 16,
                                                           fontFamily: 'Amazon',
+                                                          fontWeight: FontWeight.w500,
                                                           color: colorBlack),
                                                     ),
                                                     IconButton(
@@ -281,7 +283,7 @@ class _WishListState extends State<WishList> {
                                                 ),
                                                 Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.start,
+                                                      MainAxisAlignment.center,
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: <Widget>[
@@ -294,7 +296,7 @@ class _WishListState extends State<WishList> {
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           color: colorPrimary,
-                                                          fontSize: 11),
+                                                          fontSize: 13),
                                                     ),
                                                     const SizedBox(
                                                       width: 15,

@@ -71,43 +71,46 @@ class Dashboard extends StatelessWidget {
        drawer:  CustomDrawer(),
          
         bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _dashboardController1.tabIndex.value,
-            selectedItemColor: colorPrimary,
-            unselectedItemColor: colorlightGrey,
-            onTap: (index) {
-              _dashboardController1.tabIndex.value = index;
-            },
-            items: [
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage(
-                      _dashboardController1.imagesList[0],
+          
+            type: BottomNavigationBarType.fixed,
+              currentIndex: _dashboardController1.tabIndex.value,
+              selectedItemColor: colorPrimary,
+              unselectedItemColor: colorlightGrey,
+              onTap: (index) {
+                _dashboardController1.tabIndex.value = index;
+              },
+              items: [
+                BottomNavigationBarItem(
+                    icon: ImageIcon(
+                      AssetImage(
+                        _dashboardController1.imagesList[0],
+                      ),
                     ),
-                  ),
-                  label: _dashboardController1.app_title[0]),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage(
-                      _dashboardController1.imagesList[1],
+                    label: _dashboardController1.app_title[0]),
+                BottomNavigationBarItem(
+                    icon: ImageIcon(
+                      AssetImage(
+                        _dashboardController1.imagesList[1],
+                      ),
                     ),
-                  ),
-                  label: _dashboardController1.app_title[1]),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage(
-                      _dashboardController1.imagesList[3],
+                    label: _dashboardController1.app_title[1]),
+                BottomNavigationBarItem(
+                    icon: ImageIcon(
+                      AssetImage(
+                        _dashboardController1.imagesList[3],
+                      ),
                     ),
-                  ),
-                  label: _dashboardController1.app_title[3]),
-              BottomNavigationBarItem(
-                  icon: ImageIcon(
-                    AssetImage(
-                      _dashboardController1.imagesList[6],
+                    label: _dashboardController1.app_title[3]),
+                BottomNavigationBarItem(
+                    icon: ImageIcon(
+                      AssetImage(
+                        _dashboardController1.imagesList[6],
+                      ),
                     ),
-                  ),
-                  label: _dashboardController1.app_title[6]),
-            ]),
-      ),
+                    label: _dashboardController1.app_title[6]),
+              ]),
+        ),
+      
     );
   }
 }
