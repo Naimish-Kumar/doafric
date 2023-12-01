@@ -13,6 +13,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WishList extends StatefulWidget {
+  const WishList({super.key});
+
   @override
   State<WishList> createState() => _WishListState();
 }
@@ -107,28 +109,13 @@ class _WishListState extends State<WishList> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Container(
-                                                    margin: const EdgeInsets.only(top: 5,left: 5),
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              5.0),
-                                                      decoration:
-                                                          const BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        color: colorPrimary,
-                                                      ),
-                                                      child: const Text("%4",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 12.0))),
                                                   IconButton(
                                                     onPressed: () {
                                                       AwesomeDialog(
                                                         context: context,
 
                                                         dialogType:
-                                                            DialogType.INFO,
+                                                            DialogType.info,
                                                         btnOkColor:
                                                             colorPrimary,
                                                         borderSide: BorderSide(
@@ -140,7 +127,7 @@ class _WishListState extends State<WishList> {
                                                                     2)),
 
                                                         animType:
-                                                            AnimType.TOPSLIDE,
+                                                            AnimType.topSlide,
                                                         showCloseIcon: true,
 
                                                         title: 'Warning',
@@ -187,9 +174,7 @@ class _WishListState extends State<WishList> {
                                                   ),
                                                 ],
                                               )),
-                                          Padding(
-                                            padding: const EdgeInsets.all(5.0),
-                                            child: Column(
+                                       Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               crossAxisAlignment:
@@ -210,72 +195,7 @@ class _WishListState extends State<WishList> {
                                                           fontWeight: FontWeight.w500,
                                                           color: colorBlack),
                                                     ),
-                                                    IconButton(
-                                                        onPressed: () {
-                                                          AwesomeDialog(
-                                                            context: context,
-
-                                                            dialogType:
-                                                                DialogType.INFO,
-                                                            btnOkColor:
-                                                                colorPrimary,
-                                                            borderSide: BorderSide(
-                                                                color:
-                                                                    colorPrimary,
-                                                                width: 0.1.h),
-                                                            buttonsBorderRadius:
-                                                                const BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            2)),
-
-                                                            animType: AnimType
-                                                                .TOPSLIDE,
-                                                            showCloseIcon: true,
-
-                                                            title: 'Warning',
-                                                            desc:
-                                                                'Are you sure delete from wishlist?',
-
-                                                            // btnCancelOnPress:
-                                                            //     () {},
-                                                            btnOkOnPress: () {
-                                                              var api = ApiClient
-                                                                  .deleteSaveProductApi(
-                                                                      id: data[
-                                                                              index]
-                                                                          [
-                                                                          'id']);
-
-                                                              api.then((value) {
-                                                                if (value[
-                                                                        'status'] ==
-                                                                    'success') {
-                                                                  DialogHelper
-                                                                      .showFlutterToast(
-                                                                          strMsg:
-                                                                              value['msg']);
-                                                                  setState(
-                                                                      () {});
-                                                                  const CircularProgressIndicator();
-                                                                } else {
-                                                                  DialogHelper
-                                                                      .showFlutterToast(
-                                                                          strMsg:
-                                                                              value['msg']);
-                                                                }
-                                                              }, onError:
-                                                                  (error) {
-                                                                throw error
-                                                                    .toString();
-                                                              });
-                                                            },
-                                                          ).show();
-                                                        },
-                                                        icon: const Icon(
-                                                          Icons.delete,
-                                                          color: Colors.red,
-                                                        ))
+                                                    
                                                   ],
                                                 ),
                                                 const SizedBox(
@@ -317,7 +237,61 @@ class _WishListState extends State<WishList> {
                                                 )
                                               ],
                                             ),
-                                          ),
+                
+                                          ElevatedButton(
+                                              onPressed: () {
+                                                AwesomeDialog(
+                                                  context: context,
+
+                                                  dialogType: DialogType.INFO,
+                                                  btnOkColor: colorPrimary,
+                                                  borderSide: BorderSide(
+                                                      color: colorPrimary,
+                                                      width: 0.1.h),
+                                                  buttonsBorderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(2)),
+
+                                                  animType: AnimType.TOPSLIDE,
+                                                  showCloseIcon: true,
+
+                                                  title: 'Warning',
+                                                  desc:
+                                                      'Are you sure delete from wishlist?',
+
+                                                  // btnCancelOnPress:
+                                                  //     () {},
+                                                  btnOkOnPress: () {
+                                                    var api = ApiClient
+                                                        .deleteSaveProductApi(
+                                                            id: data[index]
+                                                                ['id']);
+
+                                                    api.then((value) {
+                                                      if (value['status'] ==
+                                                          'success') {
+                                                        DialogHelper
+                                                            .showFlutterToast(
+                                                                strMsg: value[
+                                                                    'msg']);
+                                                        setState(() {});
+                                                        const CircularProgressIndicator();
+                                                      } else {
+                                                        DialogHelper
+                                                            .showFlutterToast(
+                                                                strMsg: value[
+                                                                    'msg']);
+                                                      }
+                                                    }, onError: (error) {
+                                                      throw error.toString();
+                                                    });
+                                                  },
+                                                ).show();
+                                              },
+                                              child: const Text(
+                                               'Remove'
+                                              ))
+                                                
                                         ],
                                       ),
                                     ),

@@ -14,6 +14,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddressList extends StatefulWidget {
+  const AddressList({super.key});
+
   @override
   State<AddressList> createState() => _AddressListState();
 }
@@ -49,8 +51,8 @@ class _AddressListState extends State<AddressList> {
 
     preferences.commit();
     DialogHelper.showFlutterToast(
-        strMsg: "add1 " + add1 + "add2 " + add2 + "zip " + zip);
-    OrderReview();
+        strMsg: "${"add1 " + add1 + "add2 " + add2}zip " + zip);
+    const OrderReview();
   }
 
   RxBool selected = false.obs;
@@ -81,7 +83,7 @@ class _AddressListState extends State<AddressList> {
               : MyFontSize().normalTextSizeTablet,
           fontColor: colorPrimary,
           text: categoryName,
-          textStyle: Theme.of(context).textTheme.bodyText1!,
+          textStyle: Theme.of(context).textTheme.bodyLarge!,
           softWrap: true,
         ),
       ),
@@ -128,7 +130,7 @@ class _AddressListState extends State<AddressList> {
                                     ],
                                     begin: Alignment.centerLeft,
                                     end: Alignment.centerRight),
-                                borderRadius: BorderRadius.circular(1),
+                                borderRadius: BorderRadius.circular(15),
                               ),
                               child: const Text(
                                 "+  Add A New Address",
@@ -137,7 +139,7 @@ class _AddressListState extends State<AddressList> {
                               ),
                             ),
                             onTap: () {
-                              Get.off(AddAddress());
+                              Get.off(const AddAddress());
                             },
                           ),
                           const SizedBox(
@@ -153,7 +155,7 @@ class _AddressListState extends State<AddressList> {
                           ListView.builder(
                               shrinkWrap: true,
                               itemCount: data.length,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               scrollDirection: Axis.vertical,
                               itemBuilder: (BuildContext context, int index) {
                                 return InkWell(
@@ -195,7 +197,7 @@ class _AddressListState extends State<AddressList> {
                                                     'assets/images/map.png'),
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 25,
                                             ),
                                             Column(
@@ -206,7 +208,7 @@ class _AddressListState extends State<AddressList> {
                                               children: [
                                                 Text(
                                                   data[index]['address_line_1'],
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       fontSize: 15,
                                                       color: Colors.black),
                                                 ),
@@ -215,7 +217,7 @@ class _AddressListState extends State<AddressList> {
                                                     Text(
                                                       data[index]
                                                           ['address_line_2'],
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           fontSize: 15,
                                                           color: Colors.grey),
                                                     ),
@@ -225,7 +227,7 @@ class _AddressListState extends State<AddressList> {
                                                   children: [
                                                     Text(
                                                       data[index]['zip'],
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           fontSize: 15,
                                                           color: Colors.grey),
                                                     ),
@@ -240,36 +242,25 @@ class _AddressListState extends State<AddressList> {
                                   ),
                                 );
                               }),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Obx(
                             () => selected.value == false
-                                ? Positioned(
+                                ? Center(
                                     child: ElevatedButton(
-                                      child: Text(
-                                        "Submit",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            color: colorWhite,
-                                            fontSize: isMobile(context)
-                                                ? MyFontSize()
-                                                    .mediumTextSizeMobile
-                                                : MyFontSize()
-                                                    .mediumTextSizeTablet),
-                                      ),
                                       onPressed: () {
-                                        //  Get.toNamed(Routes.checkoutStepper);
-                                        Get.off(PaymentPay());
+                                        //Get.toNamed(Routes.checkoutStepper);
+                                        Get.off(const PaymentPay());
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        primary: colorPrimary,
-                                        padding: const EdgeInsets.all(20.0),
+                                        backgroundColor: colorPrimary,
+                                      ),
+                                      child: const Text(
+                                        "Select Address ",
+                                        style: TextStyle(color: Colors.white),
                                       ),
                                     ),
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
                                   )
                                 : const SizedBox.shrink(),
                           ),

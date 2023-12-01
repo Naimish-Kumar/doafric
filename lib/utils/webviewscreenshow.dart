@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class WebViewScreensShow extends StatefulWidget {
   final String url;
-  WebViewScreensShow({Key? key, required this.url}) : super(key: key);
+  const WebViewScreensShow({super.key, required this.url});
 
   @override
   State<WebViewScreensShow> createState() => _WebViewScreensShowState();

@@ -37,7 +37,7 @@ class Notification extends StatelessWidget {
               : MyFontSize().normalTextSizeTablet,
           fontColor: colorPrimary,
           text: categoryName,
-          textStyle: Theme.of(context).textTheme.bodyText1!,
+          textStyle: Theme.of(context).textTheme.bodyLarge!,
           softWrap: true,
         ),
       ),

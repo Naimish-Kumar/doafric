@@ -17,11 +17,12 @@ class SubcategoryScreen extends StatelessWidget {
   List categoryList;
   String categoryName;
 
-  SubcategoryScreen({required this.categoryList, required this.categoryName});
+  SubcategoryScreen(
+      {super.key, required this.categoryList, required this.categoryName});
 
   @override
   Widget build(BuildContext context) {
-    print('list ${categoryList}');
+    print('list $categoryList');
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(50),
@@ -33,7 +34,7 @@ class SubcategoryScreen extends StatelessWidget {
               height: Get.height,
               child: Center(
                 child: TextView(
-                  textStyle: Theme.of(context).textTheme.bodyText2!,
+                  textStyle: Theme.of(context).textTheme.bodyMedium!,
                   text: StringFile.noDataFound,
                   fontColor: colorBlack,
                   font_size: isMobile(context)
@@ -132,7 +133,7 @@ class SubcategoryScreen extends StatelessWidget {
                                 font_size: 15,
                                 fontColor: colorWhite,
                                 textStyle:
-                                    Theme.of(context).textTheme.bodyText1!,
+                                    Theme.of(context).textTheme.bodyLarge!,
                                 softWrap: true,
                               ),
                             )),

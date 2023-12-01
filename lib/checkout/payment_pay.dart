@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PaymentPay extends StatefulWidget {
+  const PaymentPay({super.key});
+
   @override
   State<PaymentPay> createState() => _PaymentPayState();
 }
@@ -43,7 +45,7 @@ class _PaymentPayState extends State<PaymentPay> {
               : MyFontSize().normalTextSizeTablet,
           fontColor: colorPrimary,
           text: categoryName,
-          textStyle: Theme.of(context).textTheme.bodyText1!,
+          textStyle: Theme.of(context).textTheme.bodyLarge!,
           softWrap: true,
         ),
       ),
@@ -138,7 +140,7 @@ class _PaymentPayState extends State<PaymentPay> {
                         ),
                       ),
                       onTap: () {
-                        Get.off(PaymentInformation());
+                        Get.off(const PaymentInformation());
                       },
                     ),
                     Container(

@@ -5,7 +5,7 @@ import 'orderprogress.dart';
 import 'orderreview.dart';
 
 class OrderHome extends StatefulWidget {
-  const OrderHome({Key? key}) : super(key: key);
+  const OrderHome({super.key});
 
   @override
   State<OrderHome> createState() => _OrderHomeState();
@@ -39,7 +39,7 @@ class _OrderHomeState extends State<OrderHome> {
               ],
             ),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
               OrderProgress(),
               OrderDeliverd(),

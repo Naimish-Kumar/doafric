@@ -27,10 +27,6 @@ class StorageController extends GetxController {
   /* String get apiToken => _apiToken.value;
   set apiToken(String token) => _apiToken.value = token;*/
 
-  @override
-  onInit() {
-    super.onInit();
-  }
 
   //read data
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class feedback extends StatelessWidget {
+  const feedback({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

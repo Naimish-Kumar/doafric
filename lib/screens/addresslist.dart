@@ -1,7 +1,7 @@
 import 'package:doafric/apis/api_client.dart';
+import 'package:doafric/checkout/add_address.dart';
 import 'package:doafric/db_helper/dialog_helper.dart';
 import 'package:doafric/page_routes/routes.dart';
-import 'package:doafric/screens/checkout.dart';
 import 'package:doafric/screens/orderreview.dart';
 import 'package:doafric/utils/colors.dart';
 import 'package:doafric/utils/font_size.dart';
@@ -13,6 +13,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddressList extends StatefulWidget {
+  const AddressList({super.key});
+
   @override
   State<AddressList> createState() => _AddressListState();
 }
@@ -45,7 +47,7 @@ class _AddressListState extends State<AddressList> {
     DialogHelper.showFlutterToast(
         // ignore: prefer_interpolation_to_compose_strings
         strMsg: "${"add1 " + add1 + "add2 " + add2}zip " + zip);
-    OrderReview();
+    const OrderReview();
   }
 
   @override
@@ -74,7 +76,7 @@ class _AddressListState extends State<AddressList> {
               : MyFontSize().normalTextSizeTablet,
           fontColor: colorPrimary,
           text: categoryName,
-          textStyle: Theme.of(context).textTheme.bodyText1!,
+          textStyle: Theme.of(context).textTheme.bodyLarge!,
           softWrap: true,
         ),
       ),
@@ -108,10 +110,10 @@ class _AddressListState extends State<AddressList> {
                       children: <Widget>[
                         InkWell(
                           child: Container(
-                            margin:
-                                const EdgeInsets.only(left: 4, right: 4, top: 30),
+                            margin: const EdgeInsets.only(
+                                left: 4, right: 4, top: 30),
                             alignment: Alignment.center,
-                            height: 85,
+                            height: 60,
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
                                   colors: [
@@ -125,12 +127,13 @@ class _AddressListState extends State<AddressList> {
                             child: const Text(
                               "+  Add A New Address",
                               style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                  color: Colors.black, fontSize: 18),
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                  fontSize: 18),
                             ),
                           ),
                           onTap: () {
-                            Get.off(const CheckoutScreen());
+                            Get.off(const AddAddress());
                           },
                         ),
                         const SizedBox(
@@ -143,7 +146,9 @@ class _AddressListState extends State<AddressList> {
                               fontSize: 20,
                               fontWeight: FontWeight.w500),
                         ),
-                        const SizedBox(height: 30,),
+                        const SizedBox(
+                          height: 30,
+                        ),
                         ListView.builder(
                             shrinkWrap: true,
                             itemCount: data.length,
@@ -159,64 +164,62 @@ class _AddressListState extends State<AddressList> {
                                       data[index]['id'].toString(),
                                       data.length.toString());
                                 },
-                                
-                                  child: Card(
-                                    child: Container(
-                                      padding: const EdgeInsets.all(10),
-                                      margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [ 
-                                            Image.asset('assets/images/map.png',height: 30,),
-                                              
-                                            const SizedBox(
-                                              width: 25,
-                                            ),
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                 Text(
-                                                 data[index]['address_line_1'],
-                                                  style: const TextStyle(
-                                                      fontSize: 15,
-                                                      color: Colors.black),
-                                                ),
-                                                 Row(
-                                                  children: [
-                                                    Text(
-                                                      data[index] ['address_line_2']?? " ",
-                                                      style: const TextStyle(
-                                                          fontSize: 15,
-                                                          color: Colors.grey),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                  children: [
-                                                    
-                                                    Text(
-                                                      data[index]['zip'],
-                                                      style: const TextStyle(
-                                                          fontSize: 15,
-                                                          color: Colors.grey),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: colorPrimary,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  margin: const EdgeInsets.symmetric(
+                                      vertical: 5, horizontal: 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Icon(
+                                        Icons.location_on,
+                                        color: Colors.white,
                                       ),
+                                      const SizedBox(
+                                        width: 45,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            data[index]['address_line_1'],
+                                            style: const TextStyle(
+                                                fontSize: 15,
+                                                color: Colors.white),
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                data[index]['address_line_2'] ??
+                                                    " ",
+                                                style: const TextStyle(
+                                                    fontSize: 15,
+                                                    color: Colors.grey),
+                                              ),
+                                              const SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text(
+                                                data[index]['zip'],
+                                                style: const TextStyle(
+                                                    fontSize: 15,
+                                                    color: Colors.grey),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
-                                  
-                                
+                                ),
                               );
                             }),
                         const SizedBox(

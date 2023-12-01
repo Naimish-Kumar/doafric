@@ -222,21 +222,21 @@ class ApiClient {
         headers: {Headers.acceptHeader: 'application/json'});
 
     try {
-      print('add_to_Cart ${productid}, ${userid}, ${qty}');
-      var data;
+      print('add_to_Cart $productid, $userid, $qty');
+      Map<String, Object> data = {};
       for (int i = 0; i < int.parse(qty); i++) {
         data = {
-          "add_to_cart[${i}][product_id]": productid,
-          "add_to_cart[${i}][user_id]": userid,
-          "add_to_cart[${i}][qty]": qty
+          "add_to_cart[$i][product_id]": productid,
+          "add_to_cart[$i][user_id]": userid,
+          "add_to_cart[$i][qty]": qty
         };
       }
 
-      print('add_to_Cart12 ${data},');
+      print('add_to_Cart12 $data,');
       Response response = await dio.post(path, data: data, options: options);
       if (response.statusCode == 200) {
         print("cart_list_add ${response.data}");
-        return response.data;
+        return response.data; 
       } else {
         throw Exception('Authentication Error');
       }
@@ -1018,7 +1018,7 @@ class ApiClient {
     required int id,
   }) async {
     String path =
-        'https://duafrik.imperialitforweb.com/api/state?country_id=$id';
+        'http://duafric-admin.devshs.com/api/state?country_id=$id';
     Options options = Options(
         contentType: Headers.formUrlEncodedContentType,
         headers: {Headers.acceptHeader: 'application/json'});
@@ -1123,21 +1123,21 @@ class ApiClient {
       };
 
       for (int i = 0; i < allData.length; i++) {
-        data["order_product[${i}]['product_id']"] =
+        data["order_product[$i]['product_id']"] =
             allData[i]['product_id'].toString();
-        data["order_product[${i}]['qty']"] = allData[i]['qty'].toString();
-        data["order_product[${i}]['single_price']"] =
+        data["order_product[$i]['qty']"] = allData[i]['qty'].toString();
+        data["order_product[$i]['single_price']"] =
             allData[i]['product']["sale_price"].toString();
-        data["order_product[${i}]['total_price']"] =
+        data["order_product[$i]['total_price']"] =
             (allData[i]['product']["regular_price"] * allData[i]['qty'])
                 .toString();
-        data["order_product[${i}]['variant_id']"] =
+        data["order_product[$i]['variant_id']"] =
             allData[i]['variant_id'] ?? "";
       }
 
       print(data);
       Response res = await dio.post(
-        "https://duafrik.imperialitforweb.com/api/add_order",
+        "http://duafric-admin.devshs.com/api/add_order",
         data: FormData.fromMap(data),
       );
 

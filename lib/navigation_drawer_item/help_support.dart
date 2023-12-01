@@ -7,10 +7,12 @@ import 'package:flutter/material.dart';
 
 
 class HelpSupport extends StatelessWidget {
+  const HelpSupport({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: const PreferredSize(
+    return const Scaffold(
+        appBar: PreferredSize(
             preferredSize: Size.fromHeight(50),
             child: AppBarScreens(
               text: "Help & Support",

@@ -37,7 +37,7 @@ class ProductList extends StatelessWidget {
                 if (snapshot.hasData) {
                   Map map = snapshot.data as Map;
                   List data = map['product_list']['data'];
-                  print("product_list ${data}");
+                  print("product_list $data");
                   return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisSpacing: 10,

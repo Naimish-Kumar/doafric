@@ -25,8 +25,8 @@ class TextFormScreen extends StatelessWidget {
   final void Function()? onPressed;
   final TextInputType? keyboardType;
 
-  TextFormScreen({
-    Key? key,
+  const TextFormScreen({
+    super.key,
     required this.textEditingController,
     required this.hinttext,
     required this.icon,
@@ -38,7 +38,7 @@ class TextFormScreen extends StatelessWidget {
     this.suffixIconWidget,
     this.onPressed,
     this.keyboardType,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +51,10 @@ class TextFormScreen extends StatelessWidget {
         // obscureText1: suffixIcon ? obscure : false,
 
         style: Style_File.detailstitle
-            .copyWith(fontWeight: FontWeight.w400, color: colorGrey),
+            .copyWith(fontWeight: FontWeight.w400, color: colorGrey,fontSize: 14.sp),
         decoration: InputDecoration(
             fillColor: Colors.white,
+            contentPadding: const EdgeInsets.all(13),
             filled: true,
             hintText: hinttext,
             hintStyle: TextStyle(fontSize: 14.sp, fontFamily: 'Amazon'),

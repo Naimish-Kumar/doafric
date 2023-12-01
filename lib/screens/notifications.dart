@@ -5,7 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 // ignore: must_be_immutable
 class NotifyScreen extends StatefulWidget {
-  NotifyScreen({Key? key}) : super(key: key);
+  const NotifyScreen({super.key});
 
   @override
   State<NotifyScreen> createState() => _NotifyScreenState();

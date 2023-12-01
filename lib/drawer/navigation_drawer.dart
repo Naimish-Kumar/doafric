@@ -11,6 +11,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class CustomDrawer extends StatelessWidget {
   final _dashoardController1 = Get.put(DashoardController1());
 
+   CustomDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -256,7 +258,7 @@ class CustomDrawer extends StatelessWidget {
                 borderSide: BorderSide(color: colorPrimary, width: 0.1.h),
                 buttonsBorderRadius: const BorderRadius.all(Radius.circular(2)),
                 headerAnimationLoop: false,
-                animType: AnimType.BOTTOMSLIDE,
+                animType: AnimType.bottomSlide,
                 title: 'Logout',
                 desc: 'Are you sure you want to logout of doafric?',
                 showCloseIcon: true,
@@ -273,7 +275,8 @@ class CustomDrawer extends StatelessWidget {
                             (Route<dynamic> route) => false);
                   }
                 },
-              )..show();
+              ).show();
+            
             },
           ),
 

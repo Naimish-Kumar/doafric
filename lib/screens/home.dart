@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -30,7 +32,7 @@ class _HomeState extends State<Home> {
         ),
         backgroundColor: Colors.black87,
         centerTitle: true,
-        actions: <Widget>[],
+        actions: const <Widget>[],
       ),
       body: Stack(
         children: [

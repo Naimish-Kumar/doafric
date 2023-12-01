@@ -17,6 +17,8 @@ import '../product_details.dart';
 import '../utils/string_file.dart';
 
 class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -27,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   // String?  email, password;
 
-  String _error = "";
+  final String _error = "";
   bool isLoading = false;
   bool _obscureText = true;
   final TextEditingController _emailController = TextEditingController();
@@ -50,6 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
@@ -166,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
-                        child: Text("Forgot Your Password?",
+                        child: const Text("Forgot Your Password?",
                             style: TextStyle(
                                 fontFamily: 'Amazon',
                                 color: colorBlack,
@@ -195,7 +198,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   Text(
                     _error,
-                    style: TextStyle(color: Colors.red, fontSize: 25),
+                    style: const TextStyle(color: Colors.red, fontSize: 25),
                   ),
 
                   !isLoading
@@ -205,7 +208,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             _trySubmitForm();
                           },
                         )
-                      : ButtonWidgetLoader(),
+                      : const ButtonWidgetLoader(),
                   SizedBox(
                     height: 1.h,
                   ),
@@ -256,7 +259,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     height: 50,
                     margin: EdgeInsets.only(top: 4.h),
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("--------- Or sign in with ---------",
@@ -281,8 +284,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: 30,
                             child: Image.asset("assets/images/facebook.png"),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(5.0),
+                          const Padding(
+                            padding: EdgeInsets.all(5.0),
                             child: Text("facebook",
                                 style: TextStyle(
                                     fontFamily: 'Amazon',
@@ -301,8 +304,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: 30,
                             child: Image.asset("assets/images/google.png"),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(5.0),
+                          const Padding(
+                            padding: EdgeInsets.all(5.0),
                             child: Text("Google",
                                 style: TextStyle(
                                     fontFamily: 'Amazon',
@@ -367,12 +370,12 @@ class _LoginScreenState extends State<LoginScreen> {
         encoding: Encoding.getByName("utf-8"));
     if (mounted) {
       setState(() {
-        this.isLoading = false;
+        isLoading = false;
       });
     }
     if (response.statusCode == 200) {
       Map<String, dynamic> res = jsonDecode(response.body);
-      print(" User name ${res}");
+      print(" User name $res");
       print(" User id  ${res['data']["id"]}");
       if (res['status'] == 'error') {
         DialogHelper.showFlutterToast(strMsg: res['error']);

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 class PrivacyPolicy extends StatefulWidget {
+  const PrivacyPolicy({super.key});
+
   @override
   State<PrivacyPolicy> createState() => _PrivacyPolicyState();
 }

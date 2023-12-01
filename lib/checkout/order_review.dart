@@ -21,6 +21,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/text_widget.dart';
 
 class OrderReview extends StatefulWidget {
+  const OrderReview({super.key});
+
   @override
   State<OrderReview> createState() => _OrderReviewState();
 }
@@ -88,7 +90,7 @@ class _OrderReviewState extends State<OrderReview> {
               : MyFontSize().normalTextSizeTablet,
           fontColor: colorPrimary,
           text: categoryName,
-          textStyle: Theme.of(context).textTheme.bodyText1!,
+          textStyle: Theme.of(context).textTheme.bodyLarge!,
           softWrap: true,
         ),
       ),
@@ -675,6 +677,17 @@ class _OrderReviewState extends State<OrderReview> {
                                   ),
                                   Center(
                                     child: ElevatedButton(
+                                      onPressed: () {
+                                        print("button clicked");
+                                        newMathod(data);
+                                        setState(() {
+                                          isLoading = true;
+                                        });
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: colorPrimary,
+                                        padding: const EdgeInsets.all(20.0),
+                                      ),
                                       child: Text(
                                         StringFile.placeorder,
                                         textAlign: TextAlign.center,
@@ -685,17 +698,6 @@ class _OrderReviewState extends State<OrderReview> {
                                                     .mediumTextSizeMobile
                                                 : MyFontSize()
                                                     .mediumTextSizeTablet),
-                                      ),
-                                      onPressed: () {
-                                        print("button clicked");
-                                        newMathod(data);
-                                        setState(() {
-                                          isLoading = true;
-                                        });
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        primary: colorPrimary,
-                                        padding: const EdgeInsets.all(20.0),
                                       ),
                                     ),
                                   ),
@@ -779,7 +781,7 @@ class _OrderReviewState extends State<OrderReview> {
       dataMap["order_product[$i]['single_price']"] =
           "${data[i]['product']['sale_price']}";
       dataMap["order_product[$i]['total_price']"] = "$totalPrice";
-      dataMap["order_product[${i}]['variant_id']"] = "${data[i]['variant_id']}";
+      dataMap["order_product[$i]['variant_id']"] = "${data[i]['variant_id']}";
     }
     print(json.encode(dataMap));
 

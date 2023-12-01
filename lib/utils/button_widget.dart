@@ -7,10 +7,10 @@ class ButtonWidget extends StatefulWidget {
   final String? text;
   final Function()? onTap;
   const ButtonWidget({
-    Key? key,
+    super.key,
     this.text,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   State<ButtonWidget> createState() => _ButtonWidgetState();
@@ -33,7 +33,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
                 color: Colors.grey.withOpacity(0.2),
                 spreadRadius: 4,
                 blurRadius: 10,
-                offset: Offset(-1, 3),
+                offset: const Offset(-1, 3),
               )
             ],
           ),

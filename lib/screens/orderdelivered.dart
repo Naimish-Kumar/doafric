@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class OrderDeliverd extends StatelessWidget {
+  const OrderDeliverd({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

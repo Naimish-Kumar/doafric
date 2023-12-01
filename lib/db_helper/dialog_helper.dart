@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
 
 class DialogHelper {
   RxBool isCheck = false.obs;

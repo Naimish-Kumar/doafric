@@ -468,7 +468,7 @@ class ProductDetails extends StatelessWidget {
                                     child: const Text(
                                       "Add To Bag",
                                       style:
-                                          const TextStyle(color: Colors.white),
+                                          TextStyle(color: Colors.white),
                                     ),
                                   ),
                                   const SizedBox(

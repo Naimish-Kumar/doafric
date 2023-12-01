@@ -14,7 +14,7 @@ class TextView extends StatelessWidget{
   FontStyle fontStyle;
 
   TextView(
-      {required this.text,
+      {super.key, required this.text,
         required this.font_size,
         required this.fontWeight,
         required this.fontColor,
@@ -22,6 +22,7 @@ class TextView extends StatelessWidget{
         required this.textStyle, this.softWrap = false, this.fontStyle = FontStyle.normal});
 
 
+  @override
   Widget build(BuildContext context){
     return Text(
       text,

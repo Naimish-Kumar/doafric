@@ -11,12 +11,14 @@ import 'package:get/get.dart';
 class Dashboard extends StatelessWidget {
   final _dashboardController1 = Get.put(DashoardController1());
 
+   Dashboard({super.key});
+
   @override
   Widget build(BuildContext context) {
-    final _scaffoldKey = GlobalKey<ScaffoldState>();
+    final scaffoldKey = GlobalKey<ScaffoldState>();
     return Obx(
       () => Scaffold(
-        key: _scaffoldKey,
+        key: scaffoldKey,
         appBar: AppBar(
           backgroundColor: colorWhite,
           leading: IconButton(
@@ -25,7 +27,7 @@ class Dashboard extends StatelessWidget {
               color: colorBlack,
           ),
             onPressed: () {
-              _scaffoldKey.currentState!.openDrawer();
+              scaffoldKey.currentState!.openDrawer();
             },
           ),
           actions: [
@@ -50,7 +52,7 @@ class Dashboard extends StatelessWidget {
                 size: 25,
               ),
               onPressed: () {
-                Get.to(WishList());
+                Get.to(const WishList());
               },
             ),
             IconButton(
@@ -68,7 +70,7 @@ class Dashboard extends StatelessWidget {
         ),
         body: _dashboardController1.wigetOptions
             .elementAt(_dashboardController1.tabIndex.value),
-       drawer:  CustomDrawer(),
+       drawer:   CustomDrawer(),
          
         bottomNavigationBar: BottomNavigationBar(
           

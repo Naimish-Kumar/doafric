@@ -3,7 +3,7 @@
 import 'dart:convert';
 import 'package:doafric/apis/api.dart';
 import 'package:doafric/db_helper/dialog_helper.dart';
-import 'package:doafric/navigation_drawer_item/my_order.dart';
+import 'package:doafric/navigation_drawer_item/myorder.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -103,7 +103,7 @@ class _CancelOrderState extends State<CancelOrder> {
                 height: 10,
               ),
               Container(
-                padding: EdgeInsets.all(28),
+                padding: const EdgeInsets.all(28),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -128,7 +128,7 @@ class _CancelOrderState extends State<CancelOrder> {
                           foregroundColor:
                               MaterialStateProperty.all<Color>(Colors.white),
                           backgroundColor: MaterialStateProperty.all<Color>(
-                              Color(0xFF113f60)),
+                              const Color(0xFF113f60)),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
@@ -190,7 +190,7 @@ class _CancelOrderState extends State<CancelOrder> {
 
       if (res['status'] == 'success') {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => MyOrder()));
+            context, MaterialPageRoute(builder: (context) => const MyOrder()));
         DialogHelper.showFlutterToast(strMsg: "Your Order Cancel Successfully");
       } else {
         DialogHelper.showFlutterToast(strMsg: "Something went wrong");

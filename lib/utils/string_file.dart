@@ -72,6 +72,6 @@ class StringFile {
   static const String checkout = "Checkout";
   static const String proceedToCheckout = "Proceed to Checkout";
   static const String placeorder = "Place Order";
-  static const String pleaseEnterCouponCode = "Please enter ${promoCode}";
+  static const String pleaseEnterCouponCode = "Please enter $promoCode";
   static const String onBoard = "onBoard";
 }

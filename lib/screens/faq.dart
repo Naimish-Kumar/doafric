@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class faqScreen extends StatelessWidget {
+  const faqScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +11,7 @@ class faqScreen extends StatelessWidget {
 
         child: Container(
           decoration: BoxDecoration(
-            border: Border.all(color: Color.fromARGB(255, 237, 240, 244)),
+            border: Border.all(color: const Color.fromARGB(255, 237, 240, 244)),
           ),
           child: Padding(
 
@@ -26,9 +28,9 @@ class faqScreen extends StatelessWidget {
                     IconButton(
                         onPressed: () {
                           Navigator.pop(context);
-                        }, icon: Icon(Icons.arrow_back_ios)),
+                        }, icon: const Icon(Icons.arrow_back_ios)),
 
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
 
 
@@ -44,7 +46,7 @@ class faqScreen extends StatelessWidget {
                 ),
 
 
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
 
@@ -55,10 +57,10 @@ class faqScreen extends StatelessWidget {
                 Container(
                   width: 1500.0,
                   height: 160.0,
-                  color: Color(0xFF113f60),
+                  color: const Color(0xFF113f60),
 
 
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Row(

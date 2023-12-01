@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class StepperApp extends StatefulWidget {
+  const StepperApp({super.key});
+
   @override
   _StepperAppState createState() => _StepperAppState();
 }
@@ -41,7 +43,7 @@ class _StepperAppState extends State<StepperApp> {
               : MyFontSize().normalTextSizeTablet,
           fontColor: colorPrimary,
           text: categoryName,
-          textStyle: Theme.of(context).textTheme.bodyText1!,
+          textStyle: Theme.of(context).textTheme.bodyLarge!,
           softWrap: true,
         ),
       ),
@@ -50,15 +52,15 @@ class _StepperAppState extends State<StepperApp> {
           Expanded(
             child: Stepper(
               type: stepperType,
-              physics: ScrollPhysics(),
+              physics: const ScrollPhysics(),
               currentStep: _currentStep,
               onStepTapped: (step) => tapped(step),
               onStepContinue: continued,
               onStepCancel: cancel,
               steps: <Step>[
                 Step(
-                  title: new Text('Shipping'),
-                  content: Column(
+                  title: const Text('Shipping'),
+                  content: const Column(
                     children: <Widget>[
                       CheckoutScreen(),
                     ],
@@ -88,11 +90,11 @@ class _StepperAppState extends State<StepperApp> {
                       : StepState.disabled,
                 ),
                 Step(
-                  title: Text('Payment'),
+                  title: const Text('Payment'),
                   content: Column(
                     children: <Widget>[
                       TextFormField(
-                        decoration: InputDecoration(labelText: 'Mobile Number'),
+                        decoration: const InputDecoration(labelText: 'Mobile Number'),
                       ),
                     ],
                   ),
@@ -107,8 +109,8 @@ class _StepperAppState extends State<StepperApp> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.list),
         onPressed: switchStepsType,
+        child: const Icon(Icons.list),
       ),
     );
   }

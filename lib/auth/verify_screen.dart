@@ -14,7 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 // ignore: must_be_immutable
 class VarifyScreen extends StatefulWidget {
   String email;
-  VarifyScreen(this.email, {Key? key}) : super(key: key);
+  VarifyScreen(this.email, {super.key});
   @override
   _VarifyScreenState createState() => _VarifyScreenState();
 }
@@ -92,7 +92,7 @@ class _VarifyScreenState extends State<VarifyScreen> {
                         ))),
               ),
               Container(
-                padding: EdgeInsets.all(28),
+                padding: const EdgeInsets.all(28),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -114,8 +114,9 @@ class _VarifyScreenState extends State<VarifyScreen> {
                               scaffoldMessenger.showSnackBar(const SnackBar(
                                   content: Text(
                                       "Please enter your  varification code")));
-                            } else
+                            } else {
                               isLoading = true;
+                            }
                           });
                           if (_varifyController.text.toString().isEmpty &&
                               widget.email.toString().isEmpty) {
@@ -131,7 +132,7 @@ class _VarifyScreenState extends State<VarifyScreen> {
                           foregroundColor:
                               MaterialStateProperty.all<Color>(Colors.white),
                           backgroundColor: MaterialStateProperty.all<Color>(
-                              Color(0xFF113f60)),
+                              const Color(0xFF113f60)),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(

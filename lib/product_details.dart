@@ -17,7 +17,7 @@ import 'db_helper/dialog_helper.dart';
 class ProductDetails extends StatefulWidget {
   int id;
   List varient;
-  ProductDetails({required this.id, required this.varient});
+  ProductDetails({super.key, required this.id, required this.varient});
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -270,7 +270,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       ],
                                       const SizedBox(width: 6.0),
                                       Text(
-                                        " (${data['product_review_count']} Reviews)",
+                                         " (${data['product_review_count']} Reviews)",
                                         style: const TextStyle(
                                           fontSize: 14,
                                           fontFamily: 'Amazon',
@@ -1247,7 +1247,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                                       .start,
                                                               children: [
                                                                 Container(
-                                                                  margin: const EdgeInsets.only(top: 5,left: 5),
+                                                                    margin: const EdgeInsets
+                                                                        .only(
+                                                                        top: 5,
+                                                                        left:
+                                                                            5),
                                                                     padding:
                                                                         const EdgeInsets
                                                                             .all(
@@ -1266,8 +1270,15 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                                                 Colors.white,
                                                                             fontSize: 12.0))),
                                                                 Padding(
-                                                                  padding: const EdgeInsets.only(right: 2,top: 2),
-                                                                  child: CircleAvatar(
+                                                                  padding:
+                                                                      const EdgeInsets
+                                                                          .only(
+                                                                          right:
+                                                                              2,
+                                                                          top:
+                                                                              2),
+                                                                  child:
+                                                                      CircleAvatar(
                                                                     backgroundColor:
                                                                         Colors
                                                                             .white,
@@ -1277,50 +1288,41 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                                       icon:
                                                                           const ImageIcon(
                                                                         AssetImage(
-                                                                            ImageFile
-                                                                                .heart),
+                                                                            ImageFile.heart),
                                                                         color:
                                                                             colorPrimary,
-                                                                        size: 13,
+                                                                        size:
+                                                                            13,
                                                                       ),
                                                                       onPressed:
                                                                           () async {
                                                                         SharedPreferences
                                                                             preferences =
-                                                                            await SharedPreferences
-                                                                                .getInstance();
-                                                                
+                                                                            await SharedPreferences.getInstance();
+
                                                                         preferences
-                                                                            .getInt(
-                                                                                "value");
+                                                                            .getInt("value");
                                                                         preferences
-                                                                            .getString(
-                                                                                "name");
+                                                                            .getString("name");
                                                                         preferences
-                                                                            .getString(
-                                                                                "email");
+                                                                            .getString("email");
                                                                         preferences
-                                                                            .getString(
-                                                                                "mobile");
+                                                                            .getString("mobile");
                                                                         preferences
-                                                                            .getString(
-                                                                                "id");
-                                                                
+                                                                            .getString("id");
+
                                                                         print(
                                                                             "user ${preferences.getString("id")}");
-                                                                        if (preferences
-                                                                                .getString("name") ==
+                                                                        if (preferences.getString("name") ==
                                                                             null) {
-                                                                          SqliteDatabase.writeData("productid",
-                                                                                  data4[index]['id']) ??
+                                                                          SqliteDatabase.writeData("productid", data4[index]['id']) ??
                                                                               '';
-                                                                
+
                                                                           Get.toNamed(
                                                                               Routes.loginSignupScreen);
                                                                         } else {
                                                                           var api = ApiClient.addSaveProductApi(
-                                                                              product_id:
-                                                                                  data4[index]['id'],
+                                                                              product_id: data4[index]['id'],
                                                                               user_id: data4[index]["user_id"]);
                                                                           api.then(
                                                                               (value) {
@@ -1331,10 +1333,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                                             } else {
                                                                               DialogHelper.showFlutterToast(strMsg: value['msg']);
                                                                             }
-                                                                          }, onError:
-                                                                                  (error) {
-                                                                            throw error
-                                                                                .toString();
+                                                                          }, onError: (error) {
+                                                                            throw error.toString();
                                                                           });
                                                                         }
                                                                       },
@@ -1361,13 +1361,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                             data4[index]
                                                                     ["title"] ??
                                                                 '',
-                                                                textAlign: TextAlign.center,
-                                                                maxLines: 2,
-                                                                overflow: TextOverflow.ellipsis,
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            maxLines: 2,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
                                                             style: const TextStyle(
                                                                 fontSize: 16,
-                                                                fontWeight: FontWeight.w500,
-                                                                
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
                                                                 fontFamily:
                                                                     'Amazon',
                                                                 color:

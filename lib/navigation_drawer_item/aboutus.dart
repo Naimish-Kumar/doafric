@@ -6,7 +6,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 
 class Aboutus extends StatefulWidget {
-  const Aboutus({Key? key}) : super(key: key);
+  const Aboutus({super.key});
 
   @override
   State<Aboutus> createState() => _AboutusState();

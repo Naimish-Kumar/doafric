@@ -7,10 +7,10 @@ class ButtonWidgetLoader extends StatefulWidget {
   final String? text;
   final Function()? onTap;
   const ButtonWidgetLoader({
-    Key? key,
+    super.key,
     this.text,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   State<ButtonWidgetLoader> createState() => _ButtonWidgetLoaderState();
@@ -34,7 +34,7 @@ class _ButtonWidgetLoaderState extends State<ButtonWidgetLoader> {
                 color: Colors.grey.withOpacity(0.2),
                 spreadRadius: 4,
                 blurRadius: 10,
-                offset: Offset(-1, 3),
+                offset: const Offset(-1, 3),
               )
             ],
           ),
@@ -42,7 +42,7 @@ class _ButtonWidgetLoaderState extends State<ButtonWidgetLoader> {
           child: SizedBox(
               height: 5.h,
               width: 5.h,
-              child: Center(
+              child: const Center(
                 child: CircularProgressIndicator(
                   color: colorWhite,
                 ),

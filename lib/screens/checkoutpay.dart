@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CheckoutPay extends StatelessWidget {
+  const CheckoutPay({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(
-            border: Border.all(color: Color.fromARGB(255, 237, 240, 244)),
+            border: Border.all(color: const Color.fromARGB(255, 237, 240, 244)),
           ),
           child: Padding(
             padding: const EdgeInsets.only(left: 15, right: 15),
@@ -22,9 +24,9 @@ class CheckoutPay extends StatelessWidget {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(Icons.arrow_back_ios)),
+                        icon: const Icon(Icons.arrow_back_ios)),
                     Container(
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           // Text("Checkout",style: TextStyle(color: Colors.grey,fontSize: 15),),
@@ -39,49 +41,49 @@ class CheckoutPay extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 4, right: 4, top: 40),
+                  margin: const EdgeInsets.only(left: 4, right: 4, top: 40),
                   alignment: Alignment.center,
                   height: 45,
-                  child: Text(
+                  child: const Text(
                     "Payment Method",
                     style: TextStyle(color: Colors.black, fontSize: 19),
                   ),
                 ),
                 Container(
-                  decoration: BoxDecoration(
-                      color: new Color(0xFF113f60),
+                  decoration: const BoxDecoration(
+                      color: Color(0xFF113f60),
                       gradient: LinearGradient(
                           colors: [
-                            (new Color(0xFF113f60)),
-                            (new Color(0xFF113f60))
+                            (Color(0xFF113f60)),
+                            (Color(0xFF113f60))
                           ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter)),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 4, right: 4, top: 10),
+                  margin: const EdgeInsets.only(left: 4, right: 4, top: 10),
                   alignment: Alignment.center,
                   height: 90,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      (new Color(0xffe0e0e0)),
-                      (new Color(0xffe0e0e0))
+                    gradient: const LinearGradient(colors: [
+                      (Color(0xffe0e0e0)),
+                      (Color(0xffe0e0e0))
                     ], begin: Alignment.centerLeft, end: Alignment.centerRight),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Text(
+                  child: const Text(
                     "Credit Card",
                     style: TextStyle(color: Colors.black, fontSize: 25),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 4, right: 4, top: 10),
+                  margin: const EdgeInsets.only(left: 4, right: 4, top: 10),
                   alignment: Alignment.centerLeft,
                   height: 45,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      (new Color(0xffe0e0e0)),
-                      (new Color(0xffe0e0e0))
+                    gradient: const LinearGradient(colors: [
+                      (Color(0xffe0e0e0)),
+                      (Color(0xffe0e0e0))
                     ], begin: Alignment.centerLeft, end: Alignment.centerRight),
                     borderRadius: BorderRadius.circular(5),
                   ),
@@ -102,7 +104,7 @@ class CheckoutPay extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Row(
+                          const Row(
                             children: [
                               Column(
                                 mainAxisAlignment:
@@ -131,13 +133,13 @@ class CheckoutPay extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 4, right: 4, top: 10),
+                  margin: const EdgeInsets.only(left: 4, right: 4, top: 10),
                   alignment: Alignment.centerLeft,
                   height: 45,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      (new Color(0xffe0e0e0)),
-                      (new Color(0xffe0e0e0))
+                    gradient: const LinearGradient(colors: [
+                      (Color(0xffe0e0e0)),
+                      (Color(0xffe0e0e0))
                     ], begin: Alignment.centerLeft, end: Alignment.centerRight),
                     borderRadius: BorderRadius.circular(5),
                   ),
@@ -158,7 +160,7 @@ class CheckoutPay extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Row(
+                          const Row(
                             children: [
                               Column(
                                 mainAxisAlignment:

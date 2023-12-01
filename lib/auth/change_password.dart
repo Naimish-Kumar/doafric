@@ -10,13 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../home/accout_screen.dart';
 
 // ignore: must_be_immutable
 class ChangePassword extends StatefulWidget {
   String email;
-  ChangePassword(this.email, {Key? key}) : super(key: key);
+  ChangePassword(this.email, {super.key});
 
   @override
   _ChangePasswordState createState() => _ChangePasswordState();
@@ -43,7 +42,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   bool isLoading = false;
   bool _obscureText = true;
   bool _obscureText1 = true;
-  String _error = '';
+  final String _error = '';
 
   final TextEditingController _oldpasswordController = TextEditingController();
   final TextEditingController _newPasswordController = TextEditingController();
@@ -156,7 +155,7 @@ class _ChangePasswordState extends State<ChangePassword> {
                               _trySubmitForm();
                             },
                           )
-                        : ButtonWidgetLoader(),
+                        : const ButtonWidgetLoader(),
                     SizedBox(
                       height: 3.h,
                     ),
@@ -361,7 +360,7 @@ class _ChangePasswordState extends State<ChangePassword> {
 
   void _toggle1() {
     setState(() {
-      _obscureText1 = !_obscureText;
+      _obscureText1 = !_obscureText1;
     });
   }
 
@@ -394,7 +393,7 @@ class _ChangePasswordState extends State<ChangePassword> {
 
       if (res['status'] == 'success') {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => AccountScreen()));
+            context, MaterialPageRoute(builder: (context) => const AccountScreen()));
         DialogHelper.showFlutterToast(strMsg: res['msg']);
       } else {
         DialogHelper.showFlutterToast(strMsg: "Something went wrong");

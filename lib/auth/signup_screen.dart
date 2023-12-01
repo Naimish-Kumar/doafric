@@ -41,7 +41,7 @@ class InitState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    void _trySubmitForm() {
+    void trySubmitForm() {
       final bool? isValid = _formKey.currentState?.validate();
       if (isValid == true) {
         signup(
@@ -307,10 +307,10 @@ class InitState extends State<SignUpScreen> {
                     ? ButtonWidget(
                         text: 'Sign Up',
                         onTap: () {
-                          _trySubmitForm();
+                          trySubmitForm();
                         },
                       )
-                    : ButtonWidgetLoader(),
+                    : const ButtonWidgetLoader(),
                 SizedBox(
                   height: 4.h,
                 ),

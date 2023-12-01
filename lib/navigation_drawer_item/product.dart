@@ -16,6 +16,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Product extends StatefulWidget {
+  const Product({super.key});
+
   @override
   State<Product> createState() => _ProductState();
 }
@@ -49,7 +51,7 @@ class _ProductState extends State<Product> {
               : MyFontSize().normalTextSizeTablet,
           fontColor: colorPrimary,
           text: categoryName,
-          textStyle: Theme.of(context).textTheme.bodyText1!,
+          textStyle: Theme.of(context).textTheme.bodyLarge!,
           softWrap: true,
         ),
         actions: [
@@ -192,7 +194,7 @@ class _ProductState extends State<Product> {
               size: 25,
             ),
             onPressed: () {
-              Get.to(FilterScreen());
+              Get.to(const FilterScreen());
             },
           ),
         ],
@@ -208,7 +210,7 @@ class _ProductState extends State<Product> {
                 if (snapshot.hasData) {
                   Map map = snapshot.data as Map;
                   List data = map['product_list']['data'];
-                  print("product_list ${data}");
+                  print("product_list $data");
                   return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       mainAxisSpacing: 5,

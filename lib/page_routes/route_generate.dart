@@ -19,7 +19,7 @@ import 'package:doafric/screens/checkout.dart';
 import 'package:doafric/screens/notifications.dart';
 import 'package:flutter/material.dart';
 import '../home/accout_screen.dart';
-import '../screens/profile.dart';
+import '../screens/profile_details.dart';
 import '../splash_screen.dart';
 
 class RouteGenerator {
@@ -27,16 +27,16 @@ class RouteGenerator {
     Widget widgetScreen;
     switch (settings.name) {
       case Routes.splashScreen:
-        widgetScreen = SplashScreen();
+        widgetScreen = const SplashScreen();
         break;
       case Routes.dashboard:
         widgetScreen = Dashboard();
         break;
       case Routes.loginSignupScreen:
-        widgetScreen = LoginSignupScreen();
+        widgetScreen = const LoginSignupScreen();
         break;
       case Routes.loginScreen:
-        widgetScreen = LoginScreen();
+        widgetScreen = const LoginScreen();
         break;
       case Routes.signupScreen:
         widgetScreen = SignUpScreen();
@@ -45,13 +45,13 @@ class RouteGenerator {
         widgetScreen = const CheckoutScreen();
         break;
       case Routes.forgotpassword:
-        widgetScreen = ForgotPassword();
+        widgetScreen = const ForgotPassword();
         break;
       case Routes.privacypolicy:
-        widgetScreen = PrivacyPolicy();
+        widgetScreen = const PrivacyPolicy();
         break;
       case Routes.termscondition:
-        widgetScreen = TermsAndCondition();
+        widgetScreen = const TermsAndCondition();
         break;
       case Routes.accountScreen:
         widgetScreen = const AccountScreen();
@@ -60,7 +60,7 @@ class RouteGenerator {
         widgetScreen = Information();
         break;
       case Routes.helpSupport:
-        widgetScreen = HelpSupport();
+        widgetScreen = const HelpSupport();
         break;
       case Routes.aboutus:
         widgetScreen = const Aboutus();
@@ -70,32 +70,32 @@ class RouteGenerator {
         widgetScreen = const HomeScreen();
         break;
       case Routes.categoriesScreen:
-        widgetScreen = Categories();
+        widgetScreen = const Categories();
         break;
       case Routes.cartListScreen:
-        widgetScreen = CartList();
+        widgetScreen = const CartList();
         break;
       case Routes.productScreen:
-        widgetScreen = Product();
+        widgetScreen = const Product();
         break;
       case Routes.myorder:
-        widgetScreen = MyOrder();
+        widgetScreen = const MyOrder();
         break;
       case Routes.notification:
-        widgetScreen = NotifyScreen();
+        widgetScreen = const NotifyScreen();
         break;
       case Routes.addresslist:
-        widgetScreen = AddressList();
+        widgetScreen = const AddressList();
         break;
       case Routes.profiledetails:
-        widgetScreen = profileDetails();
+        widgetScreen = const profileDetails();
         break;
       // case Routes.cancelorder:
       //   widgetScreen = CancelOrder();
       //   break;
 
       default:
-        widgetScreen = SplashScreen();
+        widgetScreen = const SplashScreen();
     }
     return PageRouteBuilder(
         settings: settings,

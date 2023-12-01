@@ -13,7 +13,7 @@ void main() {
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   static String? userid;
   static String? AUTH_TOKEN_VALUE;
@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
   // }
 
   static logout() async {
-
     //LoginApi registerresponse = LoginApi(data);
     //  await registerresponse.fcmlogout();
     // googleSignIn.disconnect();
@@ -41,7 +40,6 @@ class MyApp extends StatelessWidget {
     AUTH_TOKEN_VALUE = null;
     email_VALUE = null;
   }
-
   @override
   Widget build(BuildContext context) {
     return ResponsiveSizer(builder: (context, orientation, screenType) {
@@ -49,11 +47,8 @@ class MyApp extends StatelessWidget {
         DeviceOrientation.portraitUp,
         DeviceOrientation.portraitDown,
       ]);
-
-      return  GetMaterialApp(
-        theme: ThemeData(
-          useMaterial3: true
-        ),
+      return GetMaterialApp(
+        theme: ThemeData(useMaterial3: true),
         debugShowCheckedModeBanner: false,
         initialRoute: Routes.splashScreen,
         onGenerateRoute: RouteGenerator.generateRoute,

@@ -13,7 +13,7 @@ import '../../utils/image_file.dart';
 class Subcategory extends StatelessWidget {
   int category_id;
   String categoryName;
-  Subcategory({required this.category_id, required this.categoryName});
+  Subcategory({super.key, required this.category_id, required this.categoryName});
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +133,7 @@ class Subcategory extends StatelessWidget {
                                         fontColor: colorWhite,
                                         textStyle: Theme.of(context)
                                             .textTheme
-                                            .bodyText1!,
+                                            .bodyLarge!,
                                         softWrap: true,
                                       ),
                                     )),

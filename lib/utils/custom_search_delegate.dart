@@ -38,7 +38,7 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final _filteredata = <SuggestedData>[];
+    final filteredata = <SuggestedData>[];
     return Column(
       children: <Widget>[
         FutureBuilder(
@@ -51,7 +51,7 @@ class CustomSearchDelegate extends SearchDelegate {
                   if (data[i]['title']
                       .toLowerCase()
                       .contains(query.toLowerCase())) {
-                    _filteredata.add(
+                    filteredata.add(
                       SuggestedData(
                         title: data[i]['title'],
                         image_url: data[i]['image_url'],
@@ -61,17 +61,17 @@ class CustomSearchDelegate extends SearchDelegate {
                 }
                 return Expanded(
                   child: ListView.builder(
-                    itemCount: _filteredata.length,
+                    itemCount: filteredata.length,
                     itemBuilder: (context, index) {
                       return Card(
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListTile(
-                            title: Text(_filteredata[index].title),
+                            title: Text(filteredata[index].title),
                             leading: ClipRRect(
                               borderRadius: BorderRadius.circular(5),
                               child: Image.network(
-                                _filteredata[index].image_url,
+                                filteredata[index].image_url,
                                 fit: BoxFit.cover,
                               ),
                             ),

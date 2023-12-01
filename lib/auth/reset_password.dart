@@ -17,7 +17,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 // ignore: must_be_immutable
 class ResetPassword extends StatefulWidget {
   String email;
-  ResetPassword(this.email, {Key? key}) : super(key: key);
+  ResetPassword(this.email, {super.key});
 
   @override
   _ResetPasswordState createState() => _ResetPasswordState();
@@ -36,7 +36,7 @@ class _ResetPasswordState extends State<ResetPassword> {
 
   bool _obscureText = true;
   bool _obscureText1 = true;
-   String _error = '';
+   final String _error = '';
   final _formKey = GlobalKey<FormState>();
 
   var reg = RegExp(
@@ -68,7 +68,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: GestureDetector(
-                        onTap: () => Get.off(ForgotPassword()),
+                        onTap: () => Get.off(const ForgotPassword()),
                         child: const Icon(
                           Icons.arrow_back_ios,
                           size: 25,
@@ -151,7 +151,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                               _trySubmitForm();
                             },
                           )
-                        : ButtonWidgetLoader(),
+                        : const ButtonWidgetLoader(),
                     SizedBox(
                       height: 3.h,
                     ),
@@ -159,7 +159,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "Didn't receive any code?",
                           style: TextStyle(
                             fontSize: 14,
@@ -251,7 +251,7 @@ class _ResetPasswordState extends State<ResetPassword> {
 
       if (res['status'] == 'success') {
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => LoginSignupScreen()));
+            MaterialPageRoute(builder: (context) => const LoginSignupScreen()));
       } else {
         DialogHelper.showFlutterToast(strMsg: "Something went wrong");
       }

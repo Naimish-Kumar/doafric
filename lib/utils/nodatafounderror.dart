@@ -7,7 +7,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 // ignore: must_be_immutable
 class NoDataFoundErrorScreens extends StatelessWidget {
   double? height;
-  NoDataFoundErrorScreens({ this.height});
+  NoDataFoundErrorScreens({super.key,  this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class NoDataFoundErrorScreens extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "No Data Found",
+                "Cart is Empty",
                 style: Style_File.title
                     .copyWith(color: Colors.grey.shade600, fontSize: 18.sp),
               ),

@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class LoginSignupScreen extends StatefulWidget {
+  const LoginSignupScreen({super.key});
+
   @override
   _LoginSignupScreenState createState() => _LoginSignupScreenState();
 }
@@ -18,14 +20,14 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0),
+        preferredSize: const Size.fromHeight(50.0),
         child: SafeArea(
           child: Container(
             alignment: Alignment.topLeft,
             height: 50,
             color: Colors.white,
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios),
+              icon: const Icon(Icons.arrow_back_ios),
               tooltip: 'Back',
               onPressed: () {
                 Get.back();
@@ -103,12 +105,12 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                         fontFamily: 'Amazon',
                                         fontSize: 14,
                                         color: isSignupScreen
-                                            ? Color(0xFF113f60)
+                                            ? const Color(0xFF113f60)
                                             : Colors.grey),
                                   ),
                                   if (isSignupScreen)
                                     Container(
-                                      margin: EdgeInsets.only(top: 3),
+                                      margin: const EdgeInsets.only(top: 3),
                                       height: 2,
                                       width: 55,
                                       color: colorPrimary,
@@ -136,10 +138,10 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                   ),
                                   if (!isSignupScreen)
                                     Container(
-                                      margin: EdgeInsets.only(top: 3),
+                                      margin: const EdgeInsets.only(top: 3),
                                       height: 2,
                                       width: 55,
-                                      color: Color(0xFF113f60),
+                                      color: const Color(0xFF113f60),
                                     )
                                 ],
                               ),
@@ -165,7 +167,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
         color: Colors.white,
         margin: EdgeInsets.only(top: 1.h),
         height: MediaQuery.of(context).size.height - 40,
-        child: LoginScreen());
+        child: const LoginScreen());
   }
 
   Container buildSignupSection() {

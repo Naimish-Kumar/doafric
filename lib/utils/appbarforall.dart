@@ -9,13 +9,13 @@ class AppBarScreens extends StatelessWidget {
 
   final Function()? onPressed;
   const AppBarScreens({
-    Key? key,
+    super.key,
     this.image,
     this.text,
     this.icon2,
     this.icon3,
     this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

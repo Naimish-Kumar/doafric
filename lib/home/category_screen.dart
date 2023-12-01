@@ -117,16 +117,14 @@ class Categories extends StatelessWidget {
                                       ],
                                     ),
                                     child: Center(
-                                      child: TextView(
-                                        text: data[index]["name"] ?? "",
+                                      child: Text(
+                                        data[index]["name"] ?? "",
                                         textAlign: TextAlign.center,
-                                        fontWeight: FontWeight.w500,
-                                        font_size: 15,
-                                        fontColor: colorWhite,
-                                        textStyle: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge!,
+                                        style: const TextStyle(color: Colors.white,
+                                        fontWeight: FontWeight.w500),
                                         softWrap: true,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     )),
                               ),

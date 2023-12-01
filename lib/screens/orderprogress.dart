@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class OrderProgress extends StatelessWidget {
+  const OrderProgress({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -73,7 +73,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             "id" +
             id}user_id" +
             userid);
-    OrderReview();
+    const OrderReview();
   }
 
   addressContinue() async {
@@ -1001,7 +1001,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         continueStatus = 3;
         backStatus = 3;
       } else if (continueStatus == 3) {
-        Get.to(OrderReview());
+        Get.to(const OrderReview());
       }
     });
   }
@@ -1176,7 +1176,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       print(res);
       if (res['status'] == 'success') {
         Map<String, dynamic> user = res['data'];
-        print(" User name ${user}");
+        print(" User name $user");
         // SqliteDatabase.writeData(StorageKeys.userId, user['id']);
         savePref(
             user['name'] ?? '',
