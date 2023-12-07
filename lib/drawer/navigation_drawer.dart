@@ -1,4 +1,5 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
+
+import 'package:doafric/auth/login_signup_screen.dart';
 import 'package:doafric/controller/dashoard_controller1.dart';
 import 'package:doafric/main.dart';
 import 'package:doafric/page_routes/routes.dart';
@@ -6,7 +7,6 @@ import 'package:doafric/utils/colors.dart';
 import 'package:doafric/utils/image_file.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 
 class CustomDrawer extends StatelessWidget {
   final _dashoardController1 = Get.put(DashoardController1());
@@ -22,7 +22,6 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-
           DrawerHeader(
             padding: EdgeInsets.zero,
             child: Container(
@@ -114,7 +113,7 @@ class CustomDrawer extends StatelessWidget {
           ),
 
 // my cart
-          //if (MyApp.userid != null)
+          MyApp.userid != null?
           ListTile(
             selectedColor: colorWhite,
             selectedTileColor: colorWhite,
@@ -136,11 +135,10 @@ class CustomDrawer extends StatelessWidget {
               _dashoardController1.tabIndex.value = 2;
               Get.back();
             },
-          ),
+          ):const LoginSignupScreen(),
 
           //my orders
-          // if (MyApp.userid != null)
-          ListTile(
+          MyApp.userid != null? ListTile(
             selectedColor: colorWhite,
             selectedTileColor: colorWhite,
             leading: SizedBox(
@@ -160,7 +158,7 @@ class CustomDrawer extends StatelessWidget {
             onTap: () {
               Get.toNamed(Routes.myorder);
             },
-          ),
+          ):Container(),
 
           //information
           ListTile(
@@ -185,7 +183,7 @@ class CustomDrawer extends StatelessWidget {
             },
           ),
           //account
-          // if (MyApp.userid != null)
+          if (MyApp.userid != null)
           ListTile(
             selectedColor: colorWhite,
             selectedTileColor: colorWhite,
@@ -244,63 +242,22 @@ class CustomDrawer extends StatelessWidget {
                 color: colorPrimary,
               ),
             ),
-            title: Text(MyApp.userid == null ? 'Login' : 'Logout',
+            title: Text(
+              MyApp.userid == null ? 'Login' : 'Logout',
                 style: const TextStyle(
                     fontSize: 13,
                     fontFamily: 'Amazon',
                     fontWeight: FontWeight.bold,
                     color: colorPrimary)),
             onTap: () {
-              AwesomeDialog(
-                context: context,
-                dialogType: DialogType.INFO,
-                btnOkColor: colorPrimary,
-                borderSide: BorderSide(color: colorPrimary, width: 0.1.h),
-                buttonsBorderRadius: const BorderRadius.all(Radius.circular(2)),
-                headerAnimationLoop: false,
-                animType: AnimType.bottomSlide,
-                title: 'Logout',
-                desc: 'Are you sure you want to logout of doafric?',
-                showCloseIcon: true,
-                // btnCancelOnPress: () {
-                //   Navigator.pop(context);
-                // },
-                btnOkOnPress: () {
-                  if (MyApp.userid == null) {
-                    Navigator.pushNamed(context, Routes.loginSignupScreen);
-                  } else {
-                    MyApp.logout();
-                    Navigator.of(context, rootNavigator: true)
-                        .pushNamedAndRemoveUntil(Routes.loginSignupScreen,
-                            (Route<dynamic> route) => false);
-                  }
-                },
-              ).show();
-            
+              if (MyApp.userid == null) {
+                Get.toNamed(Routes.loginSignupScreen);
+              } else {
+               return;
+              }
+             
             },
           ),
-
-          // ListTile(
-          //   selectedColor: colorWhite,
-          //   selectedTileColor: colorWhite,
-          //   leading: SizedBox(
-          //     height: 20,
-          //     width: 20,
-          //     child: ImageIcon(
-          //       AssetImage(_dashoardController1.imagesList[8]),
-          //       color: colorPrimary,
-          //     ),
-          //   ),
-          //   title: Text(_dashoardController1.app_title[8],
-          //       style: const TextStyle(
-          //           fontSize: 13,
-          //           fontFamily: 'Amazon',
-          //           fontWeight: FontWeight.bold,
-          //           color: colorPrimary)),
-          //   onTap: () {
-          //     Get.back();
-          //   },
-          // ),
         ],
       ),
     );

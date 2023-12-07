@@ -19,7 +19,7 @@ class DashoardController1 extends GetxController {
     super.onInit();
     wigetOptions = [
       const HomeScreen(),
-       Categories(),
+       const Categories(),
       const CartList(),
       const AccountScreen(),
     ];

@@ -47,35 +47,34 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                 right: 0,
                 left: 0,
                 child: Container(
-                  child: Container(
-                    color: Colors.white,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        RichText(
-                          text: TextSpan(
-                              text: isSignupScreen ? "" : "Welcome",
-                              style: const TextStyle(
-                                fontSize: 16,
-                                letterSpacing: 2,
-                                fontFamily: 'Amazon',
-                                color: Colors.black,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: isSignupScreen
-                                      ? " Create a new Account"
-                                      : "",
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: 'Amazon',
-                                    color: Colors.black,
-                                  ),
-                                )
-                              ]),
-                        ),
-                      ],
-                    ),
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                            text: isSignupScreen ? "" : "Welcome",
+                            style: const TextStyle(
+                              fontSize: 18,
+                              letterSpacing: 2,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Amazon',
+                              color: Colors.black,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: isSignupScreen
+                                    ? " Create a new Account"
+                                    : "",
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ]),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -103,7 +102,8 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                     "Sign Up",
                                     style: TextStyle(
                                         fontFamily: 'Amazon',
-                                        fontSize: 14,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
                                         color: isSignupScreen
                                             ? const Color(0xFF113f60)
                                             : Colors.grey),
@@ -129,7 +129,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                                   Text(
                                     "Sign In",
                                     style: TextStyle(
-                                        fontSize: 14,
+                                        fontSize: 16,
                                         fontFamily: 'Amazon',
                                         fontWeight: FontWeight.bold,
                                         color: !isSignupScreen

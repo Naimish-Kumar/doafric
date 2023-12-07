@@ -1,7 +1,8 @@
 import 'package:doafric/navigation_drawer_item/update_profile.dart';
-import 'package:doafric/screens/efit_profile.dart';
+import 'package:doafric/screens/edit_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../apis/api_client.dart';
 import '../page_routes/routes.dart';
@@ -70,6 +71,7 @@ class _profileDetailsState extends State<profileDetails> {
               if (snapshot.hasData) {
                 Map map = snapshot.data as Map;
                 final data1 = map['data'];
+                print("profile$data1");
                 return SizedBox(
                   height: Get.height,
                   width: Get.height,
@@ -200,11 +202,11 @@ class _profileDetailsState extends State<profileDetails> {
                                     const SizedBox(
                                       height: 20,
                                     ),
-                                    Row(
+                                    const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        const Row(
+                                        Row(
                                           children: [
                                             Icon(Icons.map_rounded),
                                             SizedBox(
@@ -218,8 +220,8 @@ class _profileDetailsState extends State<profileDetails> {
                                           ],
                                         ),
                                         Text(
-                                          data1['state'] ?? '',
-                                          style: const TextStyle(
+                                         '',
+                                          style: TextStyle(
                                               color: Colors.grey),
                                         ),
                                       ],
@@ -227,11 +229,11 @@ class _profileDetailsState extends State<profileDetails> {
                                     const SizedBox(
                                       height: 20,
                                     ),
-                                    Row(
+                                    const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        const Row(
+                                        Row(
                                           children: [
                                             Icon(Icons.flag_circle),
                                             SizedBox(
@@ -245,8 +247,8 @@ class _profileDetailsState extends State<profileDetails> {
                                           ],
                                         ),
                                         Text(
-                                          data1['country'] ?? '',
-                                          style: const TextStyle(
+                                          '',
+                                          style: TextStyle(
                                               color: Colors.grey),
                                         ),
                                       ],
@@ -256,14 +258,16 @@ class _profileDetailsState extends State<profileDetails> {
                               ),
                             ),
                             GestureDetector(
-                              onTap: ()
-                               {
+                              onTap: () {
                                 Get.to(UpdateProfile(
                                   name: data1['name'] ?? '',
                                   email: data1['email'] ?? '',
                                   phone: data1['mobile'] ?? '',
-                                  town: data1['state'] ?? '',
+                                  city: data1['state'] ?? '',
                                   country: data1['country'] ?? '',
+                                  pincode: data1['pincode'],
+                                  profile_image: data1['profile_image'],
+                                  state: data1['state'] ?? ' ',
                                 ));
                               },
                               child: Center(

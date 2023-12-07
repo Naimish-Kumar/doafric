@@ -4,10 +4,12 @@ import 'package:doafric/cart_list.dart';
 import 'package:doafric/main.dart';
 import 'package:doafric/navigation_drawer_item/myorder.dart';
 import 'package:doafric/navigation_drawer_item/update_profile.dart';
-import 'package:doafric/screens/efit_profile.dart';
+import 'package:doafric/screens/edit_profile.dart';
+import 'package:doafric/screens/feedback.dart';
 import 'package:doafric/screens/profile_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,7 +26,9 @@ class AccountScreen extends StatefulWidget {
 
 class _AccountScreenState extends State<AccountScreen> {
   int _id = 0;
-  String? name, email, mobile, value;
+  String? name, email, mobile, value, city, state, country;
+  int pincode = 0;
+
   @override
   void initState() {
     super.initState();
@@ -40,6 +44,10 @@ class _AccountScreenState extends State<AccountScreen> {
     name = preferences.getString("name");
     email = preferences.getString("email");
     mobile = preferences.getString("mobile");
+    city = preferences.getString("city");
+    state = preferences.getString("state");
+    country = preferences.getString("country");
+    pincode = preferences.getInt("pincode") ?? 0;
     preferences.getString("id");
 
     print("user ${preferences.getString("id")}");
@@ -86,12 +94,15 @@ class _AccountScreenState extends State<AccountScreen> {
                                   InkWell(
                                     onTap: () {
                                       Get.to(() => UpdateProfile(
-                                        name: name?? '',
-                                        email: email??'',
-                                        phone: mobile??'',
-                                        town: '',
-                                        country: '',
-                                      ));
+                                            name: name ?? '',
+                                            email: email ?? '',
+                                            phone: mobile ?? '',
+                                            city: city ?? '',
+                                            country: country ?? '',
+                                            pincode: pincode,
+                                            state: state ?? '',
+                                            profile_image: '',
+                                          ));
                                     },
                                     child: const Icon(
                                       Icons.settings,
@@ -102,7 +113,8 @@ class _AccountScreenState extends State<AccountScreen> {
                                     onTap: () {
                                       Get.to(() => const CartList());
                                     },
-                                    child: const Icon(Icons.shopping_bag_outlined,
+                                    child: const Icon(
+                                        Icons.shopping_bag_outlined,
                                         color: Colors.white),
                                   ),
                                 ],
@@ -120,8 +132,8 @@ class _AccountScreenState extends State<AccountScreen> {
                                 Container(
                                   decoration: BoxDecoration(
                                     color: colorPrimary,
-                                    borderRadius:
-                                        const BorderRadius.all(Radius.circular(50.0)),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(50.0)),
                                     border: Border.all(
                                         color: colorPrimary, width: 1),
                                     boxShadow: const [
@@ -177,13 +189,17 @@ class _AccountScreenState extends State<AccountScreen> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Get.to(() =>  UpdateProfile(
-                                          name: name ?? '',
-                                          email: email ?? '',
-                                          phone: mobile ?? '',
-                                          town: '',
-                                          country: '',
-                                        ));
+                                    Get.to(const Editprofile());
+                                    // Get.to(() => UpdateProfile(
+                                    //       name: name ?? '',
+                                    //       email: email ?? '',
+                                    //       phone: mobile ?? '',
+                                    //       city: city ?? '',
+                                    //       state: state ?? '',
+                                    //       pincode: pincode,
+                                    //       profile_image:'',
+                                    //       country: '',
+                                    //     ));
                                   },
                                   child: const Icon(
                                     Icons.edit,
@@ -202,75 +218,80 @@ class _AccountScreenState extends State<AccountScreen> {
                       left: 0,
                       right: 0,
                       child: Container(
-                          width: Get.width,
-                          height: Get.height / 9,
-                          margin: const EdgeInsets.fromLTRB(40, 5, 40, 5),
-                          // decoration: const BoxDecoration(color: Colors.black),
+                        width: Get.width,
+                        height: Get.height / 9,
+                        margin: const EdgeInsets.fromLTRB(40, 5, 40, 5),
+                        // decoration: const BoxDecoration(color: Colors.black),
 
-                          decoration: BoxDecoration(
-                            color: colorPrimary,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10.0)),
-                            border: Border.all(color: colorPrimary, width: 2),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.grey,
-                                spreadRadius: 2,
-                                blurRadius: 2,
-                                offset: Offset(1, 2),
+                        decoration: BoxDecoration(
+                          color: colorPrimary,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10.0)),
+                          border: Border.all(color: colorPrimary, width: 2),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.grey,
+                              spreadRadius: 2,
+                              blurRadius: 2,
+                              offset: Offset(1, 2),
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: Column(
+                            // mainAxisAlignment: MainAxisAlignment.start,
+                            // crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      'Membership Benefits',
+                                      style: TextStyle(
+                                          fontSize: 11,
+                                          fontFamily: 'Amazon',
+                                          color: Colors.yellow),
+                                    ),
+                                  ),
+                                  IconButton(
+                                      padding: EdgeInsets.zero,
+                                      onPressed: () {
+                                        // Navigator.pop(context);
+                                      },
+                                      icon: const Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 12.0,
+                                        color: Colors.yellow,
+                                      )),
+                                ],
+                              ),
+                              const Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text('New Member Gift \n5% OFF',
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          fontFamily: 'Amazon',
+                                          color: Colors.yellow)),
+                                  VerticalDivider(),
+                                  Text(
+                                    'Birthday Gift Item \n10% OFF',
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontFamily: 'Amazon',
+                                      color: Colors.yellow,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                          child: Center(
-                            child: Column(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              // crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Text('Membership Benefits',
-                                          style: TextStyle(
-                                              fontSize: 11,
-                                              fontFamily: 'Amazon',
-                                              color: Colors.yellow)),
-                                    ),
-                                    IconButton(
-                                        padding: EdgeInsets.zero,
-                                        onPressed: () {
-                                          // Navigator.pop(context);
-                                        },
-                                        icon: const Icon(
-                                          Icons.arrow_forward_ios,
-                                          size: 12.0,
-                                          color: Colors.yellow,
-                                        )),
-                                  ],
-                                ),
-                                const Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text('New Member Gift \n5% OFF',
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            fontFamily: 'Amazon',
-                                            color: Colors.yellow)),
-                                    VerticalDivider(),
-                                    Text('Birthday Gift Item \n10% OFF',
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontFamily: 'Amazon',
-                                          color: Colors.yellow,
-                                        )),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -288,12 +309,12 @@ class _AccountScreenState extends State<AccountScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                             const Text(
-                                "My Orders",
-                                style: TextStyle(
-                                    fontSize: 13,
-                                    fontFamily: 'Amazon',
-                                    color: Colors.black),
+                            const Text(
+                              "My Orders",
+                              style: TextStyle(
+                                  fontSize: 13,
+                                  fontFamily: 'Amazon',
+                                  color: Colors.black),
                             ),
                             InkWell(
                               onTap: () {
@@ -376,42 +397,43 @@ class _AccountScreenState extends State<AccountScreen> {
                   child: Column(
                     children: [
                       InkWell(
-                        onTap: (){
-                           Get.toNamed(Routes.addresslist);
+                        onTap: () {
+                          Get.toNamed(Routes.addresslist);
                         },
                         child: const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10,vertical: 8),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
-                                  children: [
-                                   Icon(
-                                          Icons.playlist_add_check_circle_sharp,
-                                          size: 20.0,
-                                          color: Colors.grey,
-                                        ),
-                                        SizedBox(width: 5,),
-                                         Text("Address Book",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontFamily: 'Amazon',
-                                                color: Colors.black)),
-                                  ],
-                                ),
-                              Icon(
-                                    Icons.arrow_forward_ios,
+                                children: [
+                                  Icon(
+                                    Icons.playlist_add_check_circle_sharp,
                                     size: 20.0,
                                     color: Colors.grey,
-                                  )
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text("Address Book",
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontFamily: 'Amazon',
+                                          color: Colors.black)),
+                                ],
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 20.0,
+                                color: Colors.grey,
+                              )
                             ],
                           ),
                         ),
                       ),
-                      
                       InkWell(
-                        onTap: () {
-                        },
+                        onTap: () {},
                         child: const Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 10, vertical: 8),
@@ -444,7 +466,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         ),
                       ),
-                       InkWell(
+                      InkWell(
                         onTap: () {
                           Get.to(const profileDetails());
                         },
@@ -464,11 +486,13 @@ class _AccountScreenState extends State<AccountScreen> {
                                   SizedBox(
                                     width: 5,
                                   ),
-                                  Text("Profile Details",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'Amazon',
-                                          color: Colors.black)),
+                                  Text(
+                                    "Profile Details",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'Amazon',
+                                        color: Colors.black),
+                                  ),
                                 ],
                               ),
                               Icon(
@@ -480,9 +504,13 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         ),
                       ),
-                       InkWell(
+                      InkWell(
                         onTap: () {
-                          Get.to(ChangePassword(email.toString()));
+                          Get.to(
+                            ChangePassword(
+                              email.toString(),
+                            ),
+                          );
                         },
                         child: const Padding(
                           padding:
@@ -500,11 +528,13 @@ class _AccountScreenState extends State<AccountScreen> {
                                   SizedBox(
                                     width: 5,
                                   ),
-                                  Text("Change Password",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontFamily: 'Amazon',
-                                          color: Colors.black)),
+                                  Text(
+                                    "Change Password",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'Amazon',
+                                        color: Colors.black),
+                                  ),
                                 ],
                               ),
                               Icon(
@@ -516,8 +546,7 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         ),
                       ),
-                       
-                        InkWell(
+                      InkWell(
                         onTap: () {
                           Get.toNamed(Routes.helpSupport);
                         },
@@ -553,10 +582,49 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         ),
                       ),
-                       
-                       InkWell(
+                      InkWell(
                         onTap: () {
-                      AwesomeDialog(
+                          Get.to(
+                            const feedback(),
+                          );
+                        },
+                        child: const Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.feedback,
+                                    size: 20.0,
+                                    color: Colors.grey,
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    "Feedback",
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontFamily: 'Amazon',
+                                        color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 20.0,
+                                color: Colors.grey,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          AwesomeDialog(
                             context: context,
                             dialogType: DialogType.info,
                             btnOkColor: colorPrimary,
@@ -573,19 +641,9 @@ class _AccountScreenState extends State<AccountScreen> {
                             //   Navigator.pop(context);
                             // },
                             btnOkOnPress: () {
-                              if (MyApp.userid == null) {
-                                Navigator.pushReplacementNamed(
-                                    context, Routes.loginSignupScreen);
-                              } else {
-                             
-                                Navigator.of(context, rootNavigator: true)
-                                    .pushNamedAndRemoveUntil(
-                                        Routes.loginSignupScreen,
-                                        (Route<dynamic> route) => false);
-                              }
+                              MyApp.logout();
                             },
                           ).show();
-            
                         },
                         child: const Padding(
                           padding:
@@ -619,12 +677,10 @@ class _AccountScreenState extends State<AccountScreen> {
                           ),
                         ),
                       ),
-                       
                     ],
                   ),
                 ),
               ] else ...[
-
                 const SizedBox(
                   height: 40,
                 ),

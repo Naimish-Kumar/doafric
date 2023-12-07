@@ -141,7 +141,8 @@ class SubcategoryScreen extends StatelessWidget {
                     ],
                   ),
                   onTap: () {
-                    Get.to(ProductList(
+                    Get.to(
+                      ProductList(
                       category_id: categoryList[index]['category_id'],
                       sub_category_id: categoryList[index]['id'],
                     ));
