@@ -6,7 +6,6 @@ import 'package:doafric/page_routes/routes.dart';
 import 'package:doafric/screens/product_size.dart';
 import 'package:doafric/utils/app_validator.dart';
 import 'package:doafric/utils/button_widget.dart';
-import 'package:doafric/utils/button_widgetloader.dart';
 import 'package:doafric/utils/colors.dart';
 import 'package:doafric/utils/textform.dart';
 import 'package:flutter/material.dart';
